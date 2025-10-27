@@ -350,7 +350,7 @@ export function Testimonials() {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Don't just take my word for it. Here's what clients have to say about working with me.
+            Don&apos;t just take my word for it. Here&apos;s what clients have to say about working with me.
           </motion.p>
         </motion.div>
 
@@ -389,7 +389,7 @@ export function Testimonials() {
             whileTap={{ scale: 0.95 }}
           >
             <Sparkles size={20} />
-            Let's Connect
+            Let&apos;s Connect
             <Zap size={20} />
           </motion.a>
         </motion.div>

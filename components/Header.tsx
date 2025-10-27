@@ -70,7 +70,7 @@ export function Header() {
                 whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(234, 179, 8, 0.5)' }}
                 whileTap={{ scale: 0.95 }}
               >
-                Let's Connect
+                Let&apos;s Connect
               </motion.a>
             </nav>
 
@@ -108,7 +108,7 @@ export function Header() {
                 className="block text-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full gold-gradient text-white text-sm sm:text-base"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Let's Connect
+                Let&apos;s Connect
               </a>
             </div>
           </motion.div>

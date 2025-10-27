@@ -246,7 +246,7 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Have a project in mind? Let's work together to create something amazing
+            Have a project in mind? Let&apos;s work together to create something amazing
           </motion.p>
         </motion.div>
 

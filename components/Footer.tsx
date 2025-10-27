@@ -209,7 +209,7 @@ export function Footer() {
                 ease: "easeInOut"
               }}
             >
-              Let's Build the Future Together
+              Let&apos;s Build the Future Together
             </motion.h3>
             <motion.p
               className="text-sm sm:text-base"

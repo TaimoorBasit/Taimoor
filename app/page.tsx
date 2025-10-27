@@ -1,6 +1,5 @@
 "use client";
 
-import { Toaster } from '../components/ui/sonner'
 import { BackgroundEffects } from '../components/BackgroundEffects'
 import { CyberCursorTrail, PageTransition, CyberLoadingScreen } from '../components/CyberEffects'
 import { Header } from '../components/Header'
@@ -20,9 +19,9 @@ export default function Home() {
     const ensureClickability = () => {
       const allButtons = document.querySelectorAll('a, button, [role="button"]');
       allButtons.forEach(element => {
-        element.style.pointerEvents = 'auto';
-        element.style.cursor = 'pointer';
-        element.style.userSelect = 'none';
+        (element as HTMLElement).style.pointerEvents = 'auto';
+        (element as HTMLElement).style.cursor = 'pointer';
+        (element as HTMLElement).style.userSelect = 'none';
       });
     };
 
@@ -70,7 +69,6 @@ export default function Home() {
           <Footer />
         </PageTransition>
       </div>
-      <Toaster position="top-right" richColors />
     </div>
   )
 }

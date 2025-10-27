@@ -245,7 +245,7 @@ export function Hero() {
               }}
                 whileTap={{ scale: 0.95 }}
               >
-              Let's Connect
+              Let&apos;s Connect
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </motion.a>
 

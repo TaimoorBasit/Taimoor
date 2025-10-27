@@ -199,7 +199,7 @@ function CyberServiceCard({ service, index }: { service: typeof services[0]; ind
               scale: 1.05,
             }}
           >
-            Let's Connect
+            Let&apos;s Connect
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </motion.a>
         </motion.div>
@@ -349,7 +349,7 @@ export function Services() {
             className="mb-6"
             style={{ color: 'var(--slate-gray)' }}
           >
-            Don't see what you're looking for? Let's discuss your custom requirements.
+            Don&apos;t see what you&apos;re looking for? Let&apos;s discuss your custom requirements.
           </motion.p>
           <motion.a
             href="#contact"

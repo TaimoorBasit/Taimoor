@@ -1,4 +1,3 @@
-import { Toaster } from './components/ui/sonner';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -25,7 +24,6 @@ export default function App() {
         </main>
         <Footer />
       </div>
-      <Toaster position="top-right" richColors />
     </div>
   );
 }

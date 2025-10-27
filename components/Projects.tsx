@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState, useRef } from 'react';
 import { ExternalLink, Github, X, Zap, Code, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -203,9 +204,11 @@ function CyberProjectCard({ project, index }: { project: typeof projects[0]; ind
       >
         {/* Image Container */}
         <div className="relative h-64 overflow-hidden">
-          <img
+          <Image
             src={project.image}
             alt={project.title}
+            width={400}
+            height={256}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           

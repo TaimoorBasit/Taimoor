@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Code, Star, Clock, Target } from 'lucide-react';
+import Image from 'next/image';
 
 const stats = [
   { icon: Code, label: 'Technologies Mastered', value: 12, suffix: '+' },
@@ -80,9 +81,11 @@ export function About() {
             <div className="relative group">
               <div className="relative overflow-hidden rounded-2xl holographic-border p-1 w-80 h-96">
                 <div className="relative overflow-hidden rounded-xl w-full h-full">
-                  <img
+                  <Image
                     src="/My.jpg"
                   alt="Muhammad Taimoor"
+                    width={320}
+                    height={384}
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                   

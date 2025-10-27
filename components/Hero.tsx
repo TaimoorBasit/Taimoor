@@ -116,7 +116,7 @@ export function Hero() {
     <motion.section 
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pb-24"
       style={{ backgroundColor: 'var(--obsidian-black)', y }}
     >
       {/* Background Effects */}

@@ -45,7 +45,7 @@ function StatCard({ stat, index }: { stat: typeof stats[0], index: number }) {
 
 export function About() {
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+    <section id="about" className="py-8 sm:py-12 lg:py-16 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 cyber-grid opacity-10" />
       
@@ -68,7 +68,7 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start lg:items-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center">
           {/* Left: Image */}
           <motion.div
             className="flex-shrink-0"
@@ -117,13 +117,13 @@ export function About() {
 
           {/* Right: Description */}
           <motion.div
-            className="flex-1 space-y-6"
+            className="flex-1 space-y-6 text-center lg:text-left"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-lg">
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold" style={{ color: 'var(--snow-white)' }}>Muhammad Taimoor</h3>
               <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--slate-gray)' }}>
                 Specialized in creating modern, performant web applications. 

@@ -89,6 +89,8 @@ html {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 /* Optimize animations for better scroll performance */

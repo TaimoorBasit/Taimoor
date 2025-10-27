@@ -21,7 +21,6 @@ function CyberFloatingOrbs() {
             left: `${30 + orb.id * 40}%`,
             top: `${20 + orb.id * 30}%`,
             background: `radial-gradient(circle, ${orb.color}, transparent)`,
-            willChange: 'transform',
           }}
           animate={{
             x: [0, 30, -20, 0],
@@ -61,7 +60,6 @@ function OptimizedParticles() {
             top: `${Math.random() * 100}%`,
             backgroundColor: particle.color,
             opacity: 0.3,
-            willChange: 'transform',
           }}
           animate={{
             y: [0, -80, 0],
@@ -94,7 +92,6 @@ function FloatingCodeSymbols() {
             left: `${25 + i * 35}%`,
             top: `${30 + i * 20}%`,
             color: 'var(--cyan-mist)',
-            willChange: 'transform',
           }}
           animate={{
             y: [0, -15, 0],
@@ -119,7 +116,6 @@ function ScanLine() {
   return (
     <motion.div
       className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-electric-coral/20 to-transparent"
-      style={{ willChange: 'transform' }}
       animate={{
         top: ['0%', '100%'],
       }}

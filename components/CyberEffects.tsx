@@ -81,6 +81,7 @@ export function CyberCursorTrail() {
 export function PageTransition({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
+      style={{ pointerEvents: 'auto' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
@@ -95,6 +96,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 export function CyberLoadingScreen() {
   return (
     <motion.div
+      style={{ pointerEvents: 'none' }}
       className="fixed inset-0 bg-obsidian-black flex items-center justify-center z-50"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}

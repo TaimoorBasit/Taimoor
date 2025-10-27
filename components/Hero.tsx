@@ -17,6 +17,7 @@ function CyberParticles() {
           style={{
             left: `${20 + i * 20}%`,
             top: `${30 + i * 15}%`,
+            willChange: 'transform',
           }}
           animate={{
             y: [0, -60, 0],
@@ -48,6 +49,7 @@ function FloatingCodeSymbols() {
             left: `${25 + i * 25}%`,
             top: `${20 + i * 20}%`,
             color: 'rgba(255, 62, 92, 0.2)',
+            willChange: 'transform',
           }}
           animate={{
             y: [0, -30, 0],

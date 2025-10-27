@@ -1,7 +1,7 @@
 "use client";
 
 import { BackgroundEffects } from '../components/BackgroundEffects'
-import { CyberCursorTrail, PageTransition, CyberLoadingScreen } from '../components/CyberEffects'
+import { CyberCursorTrail, PageTransition } from '../components/CyberEffects'
 import { Header } from '../components/Header'
 import { Hero } from '../components/Hero'
 import { About } from '../components/About'
@@ -51,7 +51,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-obsidian-black relative scroll-container">
-      <CyberLoadingScreen />
       <BackgroundEffects />
       <CyberCursorTrail />
       <div className="relative z-10">

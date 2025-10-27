@@ -31,48 +31,16 @@ export function CyberCursorTrail() {
 
   return (
     <>
-      {/* Main Cursor - simplified */}
+      {/* Main Cursor - simplified and optimized */}
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-50"
         style={{
           background: 'var(--electric-coral)',
-          left: mousePosition.x - 8,
-          top: mousePosition.y - 8,
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          ease: "easeInOut",
+          left: mousePosition.x - 6,
+          top: mousePosition.y - 6,
+          willChange: 'transform',
         }}
       />
-
-      {/* Reduced trail particles - only 2 instead of 5 */}
-      {Array.from({ length: 2 }, (_, i) => (
-        <motion.div
-          key={i}
-          className="fixed w-1 h-1 rounded-full pointer-events-none z-40"
-          style={{
-            background: i % 2 === 0 ? 'var(--electric-coral)' : 'var(--cyan-mist)',
-            left: mousePosition.x - 2,
-            top: mousePosition.y - 2,
-          }}
-          animate={{
-            x: [0, Math.random() * 10 - 5],
-            y: [0, Math.random() * 10 - 5],
-            opacity: [0, 0.4, 0],
-            scale: [0.5, 1, 0.5],
-          }}
-          transition={{
-            duration: 0.8,
-            repeat: Infinity,
-            ease: "easeOut",
-            delay: i * 0.2,
-          }}
-        />
-      ))}
     </>
   );
 }

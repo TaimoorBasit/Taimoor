@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,51 +10,51 @@
   --holographic-silver: #D9E3F2;
   --snow-white: #F9FAFB;
   --slate-gray: #7B7E8D;
-  
+
   /* Cyber Fade Gradient */
   --cyber-fade-start: #FF3E5C;
   --cyber-fade-end: #89FFF0;
-  
+
   /* Background */
   --background: var(--obsidian-black);
   --foreground: var(--snow-white);
-  
+
   /* Card */
   --card: rgba(12, 12, 13, 0.8);
   --card-foreground: var(--snow-white);
-  
+
   /* Popover */
   --popover: var(--obsidian-black);
   --popover-foreground: var(--snow-white);
-  
+
   /* Primary */
   --primary: var(--electric-coral);
   --primary-foreground: var(--obsidian-black);
-  
+
   /* Secondary */
   --secondary: rgba(137, 255, 240, 0.1);
   --secondary-foreground: var(--cyan-mist);
-  
+
   /* Muted */
   --muted: rgba(123, 126, 141, 0.1);
   --muted-foreground: var(--slate-gray);
-  
+
   /* Accent */
   --accent: var(--cyan-mist);
   --accent-foreground: var(--obsidian-black);
-  
+
   /* Destructive */
   --destructive: #ef4444;
   --destructive-foreground: var(--snow-white);
-  
+
   /* Border */
   --border: rgba(217, 227, 242, 0.1);
   --input: rgba(217, 227, 242, 0.05);
   --ring: var(--electric-coral);
-  
+
   /* Radius */
   --radius: 0.75rem;
-  
+
   /* Fonts */
   --font-orbitron: 'Orbitron', monospace;
   --font-space-grotesk: 'Space Grotesk', sans-serif;
@@ -66,12 +64,23 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-sans;
     font-family: var(--font-space-grotesk);
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  ::selection {
+    background: var(--electric-coral);
+    color: var(--snow-white);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-orbitron);
     font-weight: 700;
     letter-spacing: 0.025em;
@@ -80,15 +89,28 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
 }
 
 /* Performance optimizations for smooth scrolling */
-.motion-element, .cyber-glass, .cyber-button, [data-framer-motion] {
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.motion-element,
+.cyber-glass,
+.cyber-button,
+[data-framer-motion],
+[class*="motion"],
+section {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Optimize animations for better scroll performance */
@@ -101,55 +123,73 @@ html {
 }
 
 /* Smooth scroll container */
-.scroll-container {
+/* Smooth scroll container */
+.scroll-container,
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+html,
+body {
   overflow-x: hidden;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 /* Ensure all interactive elements are clickable */
-a, button, [role="button"], [onclick] {
+a,
+button,
+[role="button"],
+[onclick] {
   cursor: pointer !important;
   pointer-events: auto !important;
   user-select: none;
 }
 
 /* Fix for motion.a elements */
-motion.a, motion.button {
+motion.a,
+motion.button {
   cursor: pointer !important;
   pointer-events: auto !important;
 }
 
 @layer components {
+
   /* Cyber Glassmorphism */
   .cyber-glass {
-    @apply backdrop-blur-md border backdrop-blur-sm;
+    @apply backdrop-blur-sm border;
     border-color: rgba(217, 227, 242, 0.2);
-    background: rgba(217, 227, 242, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(217, 227, 242, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    will-change: transform;
   }
-  
+
   /* Neon Glow Effects */
   .neon-glow {
-    box-shadow: 0 0 20px var(--electric-coral), 0 0 40px var(--electric-coral), 0 0 60px var(--electric-coral);
+    box-shadow: 0 0 15px var(--electric-coral), 0 0 30px var(--electric-coral);
+    will-change: box-shadow;
   }
-  
+
   .neon-glow-cyan {
-    box-shadow: 0 0 20px var(--cyan-mist), 0 0 40px var(--cyan-mist), 0 0 60px var(--cyan-mist);
+    box-shadow: 0 0 15px var(--cyan-mist), 0 0 30px var(--cyan-mist);
+    will-change: box-shadow;
   }
-  
+
   /* Cyber Gradient */
   .cyber-gradient {
     background: linear-gradient(135deg, var(--cyber-fade-start), var(--cyber-fade-end));
   }
-  
+
   .cyber-gradient-text {
-    background: linear-gradient(135deg, var(--cyber-fade-start), var(--cyber-fade-end));
+    background: var(--electric-coral);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   /* Holographic Border */
   .holographic-border {
     position: relative;
@@ -157,7 +197,7 @@ motion.a, motion.button {
     background-size: 400% 400%;
     animation: holographic-shift 3s ease-in-out infinite;
   }
-  
+
   .holographic-border::before {
     content: '';
     position: absolute;
@@ -165,7 +205,7 @@ motion.a, motion.button {
     background: var(--obsidian-black);
     border-radius: inherit;
   }
-  
+
   /* Cyber Button */
   .cyber-button {
     @apply relative overflow-hidden border px-6 py-3 rounded-lg font-medium transition-all duration-300;
@@ -173,15 +213,14 @@ motion.a, motion.button {
     color: var(--electric-coral);
     background: linear-gradient(45deg, transparent, rgba(255, 62, 92, 0.1), transparent);
   }
-  
+
   .cyber-button:hover {
     @apply outline-none;
     color: var(--obsidian-black);
     background: var(--electric-coral);
-    box-shadow: 0 0 30px var(--electric-coral);
     transform: translateY(-2px);
   }
-  
+
   /* Floating Particles */
   .cyber-particle {
     position: absolute;
@@ -192,15 +231,15 @@ motion.a, motion.button {
     opacity: 0.6;
     animation: float 6s ease-in-out infinite;
   }
-  
+
   /* Cyber Grid */
   .cyber-grid {
-    background-image: 
+    background-image:
       linear-gradient(rgba(137, 255, 240, 0.1) 1px, transparent 1px),
       linear-gradient(90deg, rgba(137, 255, 240, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
   }
-  
+
   /* Glass Input */
   .glass-input {
     @apply bg-transparent border backdrop-blur-sm;
@@ -208,11 +247,11 @@ motion.a, motion.button {
     background: rgba(217, 227, 242, 0.05);
     color: var(--snow-white);
   }
-  
+
   .glass-input::placeholder {
     color: rgba(123, 126, 141, 0.6);
   }
-  
+
   .glass-input:focus {
     @apply outline-none;
     border-color: var(--electric-coral);
@@ -221,58 +260,94 @@ motion.a, motion.button {
 }
 
 @layer utilities {
+
   /* Cyber Animations */
   @keyframes holographic-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
   }
-  
+
   @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
   }
-  
+
   @keyframes cyber-pulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 1;
+    }
   }
-  
+
   @keyframes neon-flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.8;
+    }
   }
-  
+
   @keyframes cyber-glow {
-    0%, 100% { box-shadow: 0 0 20px var(--electric-coral); }
-    50% { box-shadow: 0 0 40px var(--electric-coral), 0 0 60px var(--electric-coral); }
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px var(--electric-coral);
+    }
+
+    50% {
+      box-shadow: 0 0 40px var(--electric-coral), 0 0 60px var(--electric-coral);
+    }
   }
-  
+
   .cyber-pulse {
     animation: cyber-pulse 2s ease-in-out infinite;
   }
-  
+
   .neon-flicker {
     animation: neon-flicker 3s ease-in-out infinite;
   }
-  
+
   .cyber-glow {
     animation: cyber-glow 2s ease-in-out infinite;
   }
-  
+
   /* Text Glow */
   .text-glow {
     text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
   }
-  
+
   /* Cyber Shadow */
   .cyber-shadow {
     box-shadow: 0 0 20px rgba(255, 62, 92, 0.3), 0 0 40px rgba(255, 62, 92, 0.2), 0 0 60px rgba(255, 62, 92, 0.1);
   }
-  
+
   .cyber-shadow-cyan {
     box-shadow: 0 0 20px rgba(137, 255, 240, 0.3), 0 0 40px rgba(137, 255, 240, 0.2), 0 0 60px rgba(137, 255, 240, 0.1);
   }
-  
+
   /* Cursor Trail */
   .cursor-trail {
     position: fixed;
@@ -285,10 +360,19 @@ motion.a, motion.button {
     opacity: 0.6;
     animation: cursor-pulse 1s ease-in-out infinite;
   }
-  
+
   @keyframes cursor-pulse {
-    0%, 100% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.2); opacity: 0.3; }
+
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+
+    50% {
+      transform: scale(1.2);
+      opacity: 0.3;
+    }
   }
 }
 

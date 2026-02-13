@@ -1,120 +1,75 @@
-"use client";
-
 import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
+import { Terminal, Shield, Zap, Search } from 'lucide-react';
 
 const codeSnippets = [
-  `// React Component
-const Portfolio = () => {
-  const [projects, setProjects] = useState([]);
+  `// Initializing Market Scanner
+const scanner = new WebFindLead.Scanner({
+  niche: "Real Estate",
+  city: "New York",
+  depth: 0.95
+});
+
+// Scanning for businesses without websites...
+const invisibleLeads = await scanner.scanMarket();
+console.log(\`Found \${invisibleLeads.length} opportunities!\`);`,
+
+  `// Neural Lead Intelligence
+async function analyzePredictiveROI(business) {
+  const score = await AI.scoring(business.name, {
+    socialProof: false,
+    googleMapsRating: 3.2,
+    adPresence: "None"
+  });
   
-  useEffect(() => {
-    fetchProjects().then(data => {
-      setProjects(data);
-    });
-  }, []);
-  
-  return (
-    <div className="grid">
-      {projects.map(project => (
-        <ProjectCard key={project.id} {...project} />
-      ))}
-    </div>
-  );
-};`,
-  `// Next.js API Route
-export default async function handler(req, res) {
-  try {
-    const data = await fetch('https://api.example.com/data');
-    const json = await data.json();
-    
-    res.status(200).json({
-      success: true,
-      data: json
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch' });
-  }
+  return score > 85 ? "High-Value Lead" : "Standard";
 }`,
-  `// WordPress Custom Post Type
-function register_portfolio_post_type() {
-  register_post_type('portfolio', [
-    'labels' => [
-      'name' => 'Portfolio Items',
-      'singular_name' => 'Portfolio Item'
-    ],
-    'public' => true,
-    'has_archive' => true,
-    'supports' => ['title', 'editor', 'thumbnail']
-  ]);
-}
-add_action('init', 'register_portfolio_post_type');`,
+
+  `// Automated Outreach Engine
+const lead = invisibleLeads[0];
+await WebFindLead.Outreach.send({
+  target: lead.contact,
+  template: "No-Website-Recovery",
+  urgency: "High"
+});`,
 ];
 
-const projectPreviews = [
-  { 
-    title: 'E-Commerce Store', 
-    tech: 'Shopify + React', 
-    color: 'purple',
-    logo: '🛒',
-    animatedIcon: '💳',
-    description: 'Modern online store with seamless shopping experience'
-  },
-  { 
-    title: 'Portfolio Site', 
-    tech: 'Next.js + Tailwind', 
-    color: 'teal',
-    logo: '👨‍💻',
-    animatedIcon: '⚡',
-    description: 'Professional portfolio with smooth animations'
-  },
-  { 
-    title: 'Blog Platform', 
-    tech: 'WordPress + Custom Theme', 
-    color: 'gold',
-    logo: '📝',
-    animatedIcon: '✨',
-    description: 'Content management with custom functionality'
-  },
+const scanResults = [
+  { label: 'Business Found', value: 'Local Bakery', status: 'No Website', color: 'var(--electric-coral)' },
+  { label: 'Market Depth', value: '82%', status: 'Scanning...', color: 'var(--cyan-mist)' },
+  { label: 'Intelligence', value: 'High ROI', status: 'Target Acquired', color: '#10B981' },
 ];
 
 export function CodeViewport() {
   const [currentCode, setCurrentCode] = useState('');
   const [currentSnippetIndex, setCurrentSnippetIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [showPreview, setShowPreview] = useState(false);
+  const [showStatus, setShowStatus] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
-  const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
+  const rotateX = useTransform(mouseY, [-300, 300], [10, -10]);
+  const rotateY = useTransform(mouseX, [-300, 300], [-10, 10]);
 
   useEffect(() => {
     const snippet = codeSnippets[currentSnippetIndex];
-    
     if (charIndex < snippet.length) {
       const timeout = setTimeout(() => {
         setCurrentCode(snippet.slice(0, charIndex + 1));
         setCharIndex(charIndex + 1);
-      }, Math.random() * 50 + 30); // Random typing speed
+      }, 30);
       return () => clearTimeout(timeout);
     } else {
-      // Show preview after code is fully typed
-      const previewTimeout = setTimeout(() => {
-        setShowPreview(true);
-      }, 1000);
-      
-      // Switch to next snippet
+      const statusTimeout = setTimeout(() => setShowStatus(true), 1000);
       const switchTimeout = setTimeout(() => {
-        setShowPreview(false);
+        setShowStatus(false);
         setCurrentSnippetIndex((currentSnippetIndex + 1) % codeSnippets.length);
         setCharIndex(0);
         setCurrentCode('');
       }, 5000);
-      
       return () => {
-        clearTimeout(previewTimeout);
+        clearTimeout(statusTimeout);
         clearTimeout(switchTimeout);
       };
     }
@@ -123,188 +78,137 @@ export function CodeViewport() {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    mouseX.set(x);
-    mouseY.set(y);
+    mouseX.set(e.clientX - rect.left - rect.width / 2);
+    mouseY.set(e.clientY - rect.top - rect.height / 2);
   };
 
   return (
     <motion.div
       ref={containerRef}
-      className="relative perspective-1000"
+      className="relative w-full max-w-2xl mx-auto"
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
         mouseX.set(0);
         mouseY.set(0);
       }}
-      style={{ perspective: 1000 }}
+      style={{ perspective: 1200 }}
     >
       <motion.div
-        className="glass-panel rounded-2xl p-6 depth-shadow overflow-hidden"
+        className="relative rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl p-6 shadow-2xl overflow-hidden"
         style={{
           rotateX,
           rotateY,
           transformStyle: 'preserve-3d',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 243, 255, 0.05)'
         }}
-        transition={{ type: 'spring', stiffness: 150, damping: 20 }}
       >
         {/* Terminal Header */}
-        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-400"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
+          <div className="flex items-center gap-4">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500/50" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+              <div className="w-3 h-3 rounded-full bg-green-500/50" />
+            </div>
+            <div className="flex items-center gap-2 text-xs font-mono text-white/40">
+              <Terminal size={14} />
+              <span>webfindlead-scanner.sh</span>
+            </div>
           </div>
-          <span className="ml-4 text-xs text-gray-500" style={{ fontFamily: 'var(--font-mono)' }}>
-            portfolio.tsx
-          </span>
+          <div className="flex items-center gap-2 text-[10px] font-bold text-cyan-mist/80 uppercase tracking-tighter">
+            <Shield size={12} />
+            Secure Session
+          </div>
         </div>
 
-        {/* Code Display */}
-        <div className="relative h-[400px] overflow-hidden">
-          <pre
-            className="text-sm leading-relaxed"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
+        {/* Code Console */}
+        <div className="relative h-[300px] font-mono text-sm">
+          <pre className="text-white/80">
             <code>
               {currentCode.split('\n').map((line, i) => (
-                <div key={i} className="flex">
-                  <span className="text-gray-400 select-none mr-4 text-right" style={{ minWidth: '2rem' }}>
-                    {i + 1}
-                  </span>
-                  <span className="syntax-highlight">{highlightSyntax(line)}</span>
+                <div key={i} className="flex min-h-[1.5rem]">
+                  <span className="text-white/20 w-8 select-none">{i + 1}</span>
+                  <span className="flex-1 whitespace-pre-wrap">{highlightSyntax(line)}</span>
                 </div>
               ))}
               <motion.span
-                className="inline-block w-2 h-5 ml-1 bg-gradient-to-r from-[var(--gold-start)] to-[var(--gold-end)]"
-                animate={{ opacity: [1, 0, 1] }}
+                className="inline-block w-1.5 h-4 bg-cyan-mist ml-1"
+                animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
               />
             </code>
           </pre>
 
-          {/* Project Previews */}
-          {showPreview && (
-            <motion.div
-              className="absolute right-4 top-4 space-y-3"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 50 }}
-              transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-            >
-              {projectPreviews.map((preview, i) => (
-                <motion.div
-                  key={i}
-                  className="glass-panel rounded-lg p-4 w-64 depth-shadow overflow-hidden"
-                  initial={{ opacity: 0, rotateY: -20 }}
-                  animate={{ opacity: 1, rotateY: 0 }}
-                  transition={{ delay: i * 0.2, type: 'spring', stiffness: 120, damping: 18 }}
-                  whileHover={{ scale: 1.05, rotateY: 5 }}
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  {/* Header with animated logo */}
-                  <div className={`h-24 rounded-md mb-3 bg-gradient-to-br ${
-                    preview.color === 'purple' ? 'from-purple-400 to-purple-600' :
-                    preview.color === 'teal' ? 'from-teal-400 to-teal-600' :
-                    'from-yellow-400 to-yellow-600'
-                  } relative flex items-center justify-center`}>
-                    {/* Animated logo */}
-                    <motion.div
-                      className="text-4xl mb-2"
-                      animate={{
-                        rotate: [0, 10, -10, 0],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }}
-                    >
-                      {preview.logo}
-                    </motion.div>
-                    
-                    {/* Floating animated icon */}
-                    <motion.div
-                      className="absolute top-2 right-2 text-lg"
-                      animate={{
-                        y: [0, -5, 0],
-                        opacity: [0.7, 1, 0.7],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }}
-                    >
-                      {preview.animatedIcon}
-                    </motion.div>
-
-                    {/* Subtle pattern overlay */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="w-full h-full bg-white/20 rounded-md"></div>
+          {/* Floating HUD Results */}
+          <AnimatePresence>
+            {showStatus && (
+              <motion.div
+                className="absolute right-0 top-0 bottom-0 w-64 flex flex-col gap-3 justify-center pointer-events-none"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+              >
+                {scanResults.map((res, i) => (
+                  <motion.div
+                    key={i}
+                    className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xl"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <div className="text-[10px] text-white/40 uppercase font-bold tracking-widest">{res.label}</div>
+                    <div className="text-sm font-bold text-white mb-1">{res.value}</div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: res.color }} />
+                      <span className="text-[10px] font-medium" style={{ color: res.color }}>{res.status}</span>
                     </div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-semibold text-gray-800">{preview.title}</h4>
-                    <p className="text-xs text-gray-600 font-mono">{preview.tech}</p>
-                    <p className="text-xs text-gray-500 leading-relaxed">{preview.description}</p>
-                  </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-                  {/* Tech badges */}
-                  <div className="flex gap-1 mt-3">
-                    {preview.tech.split(' + ').map((tech, idx) => (
-                      <motion.span
-                        key={idx}
-                        className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.2 + idx * 0.1 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
+        {/* Bottom Status Bar */}
+        <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-[10px] font-mono text-white/30">
+              <Search size={12} />
+              <span>SCANNING_ENGINE_V2</span>
+            </div>
+            <div className="flex items-center gap-2 text-[10px] font-mono text-white/30">
+              <Zap size={12} className="text-yellow-500" />
+              <span>LOW_LATENCY</span>
+            </div>
+          </div>
+          <div className="h-1 w-24 bg-white/5 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-cyan-mist"
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
+            />
+          </div>
         </div>
       </motion.div>
+
+      {/* Background Glow Decorations */}
+      <div className="absolute -inset-4 bg-cyan-mist/5 blur-3xl opacity-50 pointer-events-none" />
     </motion.div>
   );
 }
 
-// Simple syntax highlighting
 function highlightSyntax(line: string) {
-  const keywords = ['const', 'let', 'var', 'function', 'return', 'if', 'else', 'for', 'while', 'export', 'import', 'from', 'async', 'await', 'try', 'catch', 'useEffect', 'useState', 'default'];
-  const strings = line.match(/(["'`])(?:(?=(\\?))\2.)*?\1/g);
-  const comments = line.match(/\/\/.*/g);
-
+  const keywords = ['const', 'new', 'await', 'async', 'function', 'return', 'console', 'log'];
   let highlighted = line;
 
-  // Highlight comments
-  if (comments) {
-    comments.forEach(comment => {
-      highlighted = highlighted.replace(comment, `<span style="color: #6B7280">${comment}</span>`);
-    });
-  }
-
-  // Highlight strings
-  if (strings) {
-    strings.forEach(str => {
-      highlighted = highlighted.replace(str, `<span style="color: #10B981">${str}</span>`);
-    });
-  }
-
-  // Highlight keywords
-  keywords.forEach(keyword => {
-    const regex = new RegExp(`\\b${keyword}\\b`, 'g');
-    highlighted = highlighted.replace(regex, `<span style="color: #7C3AED">${keyword}</span>`);
+  keywords.forEach(kw => {
+    const reg = new RegExp(`\\b${kw}\\b`, 'g');
+    highlighted = highlighted.replace(reg, `<span style="color: #FF3E5C">${kw}</span>`);
   });
+
+  // Numbers & Strings
+  highlighted = highlighted.replace(/(\d+)/g, '<span style="color: #A78BFA">$1</span>');
+  highlighted = highlighted.replace(/(["'`].*?["'`])/g, '<span style="color: #22D3EE">$1</span>');
 
   return <span dangerouslySetInnerHTML={{ __html: highlighted }} />;
 }

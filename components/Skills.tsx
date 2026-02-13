@@ -2,148 +2,67 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiNodedotjs,
+  SiHtml5, SiCss3, SiTailwindcss, SiWordpress, SiShopify,
+  SiPhp, SiMysql, SiMongodb, SiGit, SiAmazon, SiDocker,
+  SiFirebase, SiVercel, SiGraphql, SiRedux, SiPython, SiLinux
+} from 'react-icons/si';
+import { Workflow } from 'lucide-react';
 
 const techIcons = [
-  { name: 'React', icon: '⚛️', color: 'var(--electric-coral)' },
-  { name: 'Next.js', icon: '▲', color: 'var(--cyan-mist)' },
-  { name: 'TypeScript', icon: '📘', color: 'var(--electric-coral)' },
-  { name: 'JavaScript', icon: '🟨', color: 'var(--cyan-mist)' },
-  { name: 'Node.js', icon: '🟢', color: 'var(--electric-coral)' },
-  { name: 'HTML5', icon: '🧡', color: 'var(--cyan-mist)' },
-  { name: 'CSS3', icon: '💙', color: 'var(--electric-coral)' },
-  { name: 'Tailwind', icon: '🎨', color: 'var(--cyan-mist)' },
-  { name: 'WordPress', icon: '📝', color: 'var(--electric-coral)' },
-  { name: 'Shopify', icon: '🛒', color: 'var(--cyan-mist)' },
-  { name: 'PHP', icon: '🐘', color: 'var(--electric-coral)' },
-  { name: 'MySQL', icon: '🗄️', color: 'var(--cyan-mist)' },
-  { name: 'MongoDB', icon: '🍃', color: 'var(--electric-coral)' },
-  { name: 'Git', icon: '🌿', color: 'var(--cyan-mist)' },
-  { name: 'AWS', icon: '☁️', color: 'var(--electric-coral)' },
-  { name: 'Docker', icon: '🐳', color: 'var(--cyan-mist)' },
-  { name: 'Firebase', icon: '🔥', color: 'var(--electric-coral)' },
-  { name: 'Vercel', icon: '▲', color: 'var(--cyan-mist)' },
-  { name: 'GraphQL', icon: '🔮', color: 'var(--electric-coral)' },
-  { name: 'Redux', icon: '🔄', color: 'var(--cyan-mist)' },
+  { name: 'React', icon: <SiReact />, color: '#61DAFB' },
+  { name: 'Next.js', icon: <SiNextdotjs />, color: '#ffffff' },
+  { name: 'Python', icon: <SiPython />, color: '#3776AB' },
+  { name: 'n8n', icon: <Workflow />, color: '#EA4B71' },
+  { name: 'Kali Linux', icon: <SiLinux />, color: '#557C94' },
+  { name: 'Node.js', icon: <SiNodedotjs />, color: '#339933' },
+  { name: 'TypeScript', icon: <SiTypescript />, color: '#3178C6' },
+  { name: 'Shopify', icon: <SiShopify />, color: '#7AB55C' },
+  { name: 'Amazon FBA', icon: <SiAmazon />, color: '#FF9900' },
+  { name: 'WordPress', icon: <SiWordpress />, color: '#21759B' },
+  { name: 'Tailwind', icon: <SiTailwindcss />, color: '#06B6D4' },
+  { name: 'MongoDB', icon: <SiMongodb />, color: '#47A248' },
 ];
 
 // Holographic tech icon with cyber effects
 function CyberTechIcon({ tech, index }: { tech: typeof techIcons[0]; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
       className="relative group"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.05, type: 'spring', stiffness: 120, damping: 18 }}
-      whileHover={{ 
-        scale: 1.15, 
+      transition={{ delay: index * 0.05, duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      whileHover={{
+        scale: 1.15,
         y: -12,
       }}
     >
       {/* Holographic Container */}
-      <div className="relative p-4 sm:p-6 rounded-2xl cyber-glass min-w-[120px] sm:min-w-[140px] h-[120px] sm:h-[140px] mx-2 flex flex-col items-center justify-center group-hover:border-electric-coral/50 transition-all duration-300">
-        
-        {/* Floating Icon */}
-        <motion.div
-          className="text-4xl sm:text-5xl mb-2 relative z-10"
-          animate={{
-            y: [0, -5, 0],
-            rotate: [0, 2, -2, 0],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: index * 0.1,
-          }}
-        >
+      <div
+        className="relative p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 min-w-[120px] sm:min-w-[140px] h-[120px] sm:h-[140px] mx-2 flex flex-col items-center justify-center transition-all duration-300"
+        style={{
+          borderColor: isHovered ? tech.color : 'rgba(255, 255, 255, 0.1)',
+          boxShadow: isHovered ? `0 0 20px -5px ${tech.color}` : 'none'
+        }}
+      >
+
+        {/* Icon */}
+        <div className="text-4xl sm:text-5xl mb-2 relative z-10" style={{ color: tech.color }}>
           {tech.icon}
-        </motion.div>
-        
+        </div>
+
         {/* Tech Name */}
-        <motion.span
+        <span
           className="text-xs sm:text-sm font-medium text-center relative z-10"
           style={{ color: 'var(--snow-white)' }}
-          animate={{
-            opacity: [0.8, 1, 0.8],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: index * 0.1,
-          }}
         >
           {tech.name}
-        </motion.span>
-
-        {/* Holographic Glow Effect */}
-        <motion.div
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(circle, ${tech.color}, transparent)`,
-            filter: 'blur(15px)',
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0, 0.4, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Cyber Scan Lines */}
-        <motion.div
-          className="absolute inset-0 rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {Array.from({ length: 3 }, (_, i) => (
-          <motion.div
-              key={i}
-              className="absolute w-full h-px"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${tech.color}, transparent)`,
-                top: `${25 + i * 25}%`,
-              }}
-            animate={{
-                x: ['-100%', '100%'],
-                opacity: [0, 1, 0],
-            }}
-            transition={{
-                duration: 1.5,
-              repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.3,
-            }}
-          />
-          ))}
-        </motion.div>
-
-        {/* Simplified Floating Particles - reduced from 3 to 1 */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              background: tech.color,
-              left: '50%',
-              top: '50%',
-            }}
-            animate={{
-              y: [0, -15, 0],
-              opacity: [0, 0.6, 0],
-              scale: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
+        </span>
       </div>
     </motion.div>
   );
@@ -153,9 +72,9 @@ function CyberTechIcon({ tech, index }: { tech: typeof techIcons[0]; index: numb
 function TranscendentCarousel() {
   const [isPaused, setIsPaused] = useState(false);
   const duplicatedIcons = [...techIcons, ...techIcons, ...techIcons];
-  
+
   return (
-    <div 
+    <div
       className="overflow-hidden relative"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -163,7 +82,7 @@ function TranscendentCarousel() {
       {/* Holographic Gradient Overlays */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-obsidian-black via-obsidian-black/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-obsidian-black via-obsidian-black/80 to-transparent z-10 pointer-events-none" />
-      
+
       {/* Cyber Scan Lines */}
       <motion.div
         className="absolute top-0 left-0 w-full h-px z-20"
@@ -183,11 +102,11 @@ function TranscendentCarousel() {
 
       <motion.div
         className="flex"
-        animate={{ 
-          x: [0, -150 * techIcons.length] 
+        animate={{
+          x: [0, -150 * techIcons.length]
         }}
-        transition={{ 
-          duration: 35, 
+        transition={{
+          duration: 35,
           ease: 'linear',
           repeat: Infinity,
           repeatType: 'loop'
@@ -214,9 +133,8 @@ function CyberSkillBadge({ skill, index }: { skill: string; index: number }) {
       viewport={{ once: true }}
       transition={{
         delay: 0.7 + index * 0.05,
-        type: 'spring',
-        stiffness: 150,
-        damping: 15,
+        duration: 0.5,
+        ease: [0.4, 0.0, 0.2, 1],
       }}
       whileHover={{
         scale: 1.1,
@@ -232,7 +150,7 @@ function CyberSkillBadge({ skill, index }: { skill: string; index: number }) {
         >
           {skill}
         </motion.span>
-        
+
         {/* Hover Glow */}
         <motion.div
           className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -248,76 +166,35 @@ function CyberSkillBadge({ skill, index }: { skill: string; index: number }) {
 
 export function Skills() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="skills" className="py-24 sm:py-32 relative overflow-hidden bg-obsidian-black/50">
       {/* Background Effects */}
-      <div className="absolute inset-0 cyber-grid opacity-5" />
-      
-      {/* Optimized Floating Cyber Orbs - reduced from 4 to 2 */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 2 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full blur-2xl"
-            style={{
-              width: 150 + i * 50,
-              height: 150 + i * 50,
-              left: `${20 + i * 60}%`,
-              top: `${30 + i * 40}%`,
-              background: i % 2 === 0 
-                ? 'radial-gradient(circle, rgba(255,62,92,0.1), transparent)' 
-                : 'radial-gradient(circle, rgba(137,255,240,0.1), transparent)',
-            }}
-            animate={{
-              x: [0, 30, -20, 0],
-              y: [0, -25, 35, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 12 + i * 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 3,
-            }}
-          />
-        ))}
-      </div>
+      <div className="absolute inset-0 cyber-grid opacity-[0.03]" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ type: 'spring', stiffness: 120, damping: 18 }}
+          transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
         >
           <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl mb-4 font-bold"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight"
             style={{ color: 'var(--snow-white)' }}
-            animate={{
-              textShadow: [
-                "0 0 10px var(--electric-coral)",
-                "0 0 20px var(--electric-coral), 0 0 30px var(--cyan-mist)",
-                "0 0 10px var(--electric-coral)"
-              ]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
           >
-            Technical <span className="cyber-gradient-text">Skills</span>
+            Technological <span className="cyber-gradient-text">Mastery</span>
           </motion.h2>
           <motion.p
-            className="text-lg sm:text-xl max-w-2xl mx-auto"
-            style={{ color: 'var(--slate-gray)' }}
+            className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Technologies and tools I transcend with
+            I leverage an advanced arsenal of frameworks and tools to engineer scalable, high-performance digital ecosystems.
           </motion.p>
         </motion.div>
 
@@ -343,17 +220,19 @@ export function Skills() {
           {techIcons.slice(0, 12).map((tech, i) => (
             <motion.div
               key={tech.name}
-              className="flex flex-col items-center justify-center p-3 rounded-xl cyber-glass group"
+              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10 group transition-colors duration-300 hover:bg-white/10"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5 + i * 0.05, type: 'spring', stiffness: 120, damping: 18 }}
-              whileHover={{ 
-                scale: 1.05, 
+              transition={{ delay: 0.5 + i * 0.05, duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
+              whileHover={{
+                scale: 1.05,
                 y: -4,
+                borderColor: tech.color,
+                boxShadow: `0 0 15px -3px ${tech.color}`
               }}
             >
-              <div className="text-2xl mb-1 group-hover:scale-110 transition-transform">{tech.icon}</div>
+              <div className="text-2xl mb-1 group-hover:scale-110 transition-transform" style={{ color: tech.color }}>{tech.icon}</div>
               <span className="text-xs font-medium text-center" style={{ color: 'var(--snow-white)' }}>{tech.name}</span>
             </motion.div>
           ))}
@@ -368,16 +247,38 @@ export function Skills() {
           transition={{ delay: 0.6 }}
         >
           {[
-            'Responsive Design',
-            'UI/UX',
-            'Performance Optimization',
-            'SEO',
-            'Accessibility',
-            'REST API',
-            'SASS',
-            'PostgreSQL',
-          ].map((skill, i) => (
-            <CyberSkillBadge key={skill} skill={skill} index={i} />
+            {
+              title: 'Dev & Algorithms',
+              skills: ['Full Stack', 'MERN', 'AI Integration', 'Unreal Engine 5', 'Three.js', 'Next.js']
+            },
+            {
+              title: 'Cybersecurity',
+              skills: ['Kali Linux', 'Autopsy', 'OS Forensics', 'Penetration Testing', 'Network Security']
+            },
+            {
+              title: 'AI & Automation',
+              skills: ['n8n Workflows', 'Chatbot Integration', 'Lead Gen Tools', 'Auto-Appointment', 'Process Automation']
+            },
+            {
+              title: 'E-commerce Business',
+              skills: ['Amazon Wholesale', 'Private Label', 'Retail Arbitrage', 'Dropshipping', 'Shopify Growth', 'SEO', 'Digital Marketing']
+            }
+          ].map((category, i) => (
+            <motion.div
+              key={category.title}
+              className="w-full max-w-sm cyber-glass p-6 rounded-3xl border-white/5"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <h3 className="text-xl font-bold mb-6 cyber-gradient-text uppercase tracking-widest">{category.title}</h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, si) => (
+                  <CyberSkillBadge key={skill} skill={skill} index={si} />
+                ))}
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

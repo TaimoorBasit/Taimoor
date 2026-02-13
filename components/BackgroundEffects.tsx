@@ -8,7 +8,7 @@ function CyberFloatingOrbs() {
     { id: 0, color: 'rgba(255,62,92,0.15)', size: 150, duration: 20 },
     { id: 1, color: 'rgba(137,255,240,0.15)', size: 200, duration: 25 },
   ];
-  
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {orbs.map((orb) => (
@@ -21,7 +21,6 @@ function CyberFloatingOrbs() {
             left: `${30 + orb.id * 40}%`,
             top: `${20 + orb.id * 30}%`,
             background: `radial-gradient(circle, ${orb.color}, transparent)`,
-            willChange: 'transform',
           }}
           animate={{
             x: [0, 30, -20, 0],
@@ -47,7 +46,7 @@ function OptimizedParticles() {
     duration: 8 + Math.random() * 4,
     delay: i * 0.8,
   }));
-  
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((particle) => (
@@ -61,7 +60,6 @@ function OptimizedParticles() {
             top: `${Math.random() * 100}%`,
             backgroundColor: particle.color,
             opacity: 0.3,
-            willChange: 'transform',
           }}
           animate={{
             y: [0, -80, 0],
@@ -83,7 +81,7 @@ function OptimizedParticles() {
 // Simplified floating code symbols - reduced for performance
 function FloatingCodeSymbols() {
   const symbols = ['</>', '{ }', '=>'];
-  
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {symbols.map((symbol, i) => (
@@ -94,7 +92,6 @@ function FloatingCodeSymbols() {
             left: `${25 + i * 35}%`,
             top: `${30 + i * 20}%`,
             color: 'var(--cyan-mist)',
-            willChange: 'transform',
           }}
           animate={{
             y: [0, -15, 0],
@@ -119,7 +116,6 @@ function ScanLine() {
   return (
     <motion.div
       className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-electric-coral/20 to-transparent"
-      style={{ willChange: 'transform' }}
       animate={{
         top: ['0%', '100%'],
       }}
@@ -150,17 +146,7 @@ export function BackgroundEffects() {
         />
       </div>
 
-      {/* Optimized floating orbs */}
-      <CyberFloatingOrbs />
-
-      {/* Optimized particles */}
-      <OptimizedParticles />
-
-      {/* Simplified code symbols */}
-      <FloatingCodeSymbols />
-
-      {/* Single scan line */}
-      <ScanLine />
+      {/* All animations removed for maximum smoothness */}
 
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-obsidian-black/20" />

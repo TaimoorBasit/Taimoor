@@ -53,7 +53,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: [0.4, 0.0, 0.2, 1] }}
     >
       {children}
     </motion.div>
@@ -76,7 +76,6 @@ export function CyberLoadingScreen() {
           className="w-20 h-20 mx-auto mb-8 rounded-full"
           style={{
             background: 'linear-gradient(135deg, var(--electric-coral), var(--cyan-mist))',
-            boxShadow: '0 0 30px var(--electric-coral)',
           }}
           animate={{
             rotate: [0, 360],
@@ -108,7 +107,7 @@ export function CyberLoadingScreen() {
             ease: "easeInOut",
           }}
         >
-          Muhammad Taimoor
+          M Taimoor Awan
         </motion.h1>
 
         {/* Loading Bar */}

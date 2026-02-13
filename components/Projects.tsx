@@ -1,15 +1,90 @@
 "use client";
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { useState, useRef } from 'react';
-import { ExternalLink, Github, X, Zap, Code, Sparkles } from 'lucide-react';
+import { useState, useRef, memo } from 'react';
+import { ExternalLink, Github, X, Zap, Code, Sparkles, MapPin, Gamepad2, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
+import {
+  SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiTypescript,
+  SiMongodb, SiStripe, SiWordpress, SiPhp, SiJavascript, SiCss3,
+  SiSass, SiWoocommerce, SiShopify, SiHtml5, SiPython, SiSelenium
+} from 'react-icons/si';
+
+// Helper to map tech names to icons
+const getTechIcon = (techName: string) => {
+  switch (techName) {
+    case 'React': return <SiReact className="text-[#61DAFB]" />;
+    case 'Next.js': return <SiNextdotjs className="text-white" />;
+    case 'Tailwind CSS': return <SiTailwindcss className="text-[#06B6D4]" />;
+    case 'Node.js': return <SiNodedotjs className="text-[#339933]" />;
+    case 'TypeScript': return <SiTypescript className="text-[#3178C6]" />;
+    case 'MongoDB': return <SiMongodb className="text-[#47A248]" />;
+    case 'Stripe': return <SiStripe className="text-[#008CDD]" />;
+    case 'WordPress': return <SiWordpress className="text-[#21759B]" />;
+    case 'PHP': return <SiPhp className="text-[#777BB4]" />;
+    case 'JavaScript': return <SiJavascript className="text-[#F7DF1E]" />;
+    case 'CSS3': return <SiCss3 className="text-[#1572B6]" />;
+    case 'SCSS': return <SiSass className="text-[#CC6699]" />;
+    case 'WooCommerce': return <SiWoocommerce className="text-[#96588A]" />;
+    case 'Shopify': return <SiShopify className="text-[#7AB55C]" />;
+    case 'Liquid': return <Code className="text-[#95BF47]" size={14} />;
+    case 'HTML5': return <SiHtml5 className="text-[#E34F26]" />;
+    case 'Python': return <SiPython className="text-[#3776AB]" />;
+    case 'Selenium': return <SiSelenium className="text-[#43B02A]" />;
+    default: return <Code size={14} className="text-slate-400" />;
+  }
+};
 
 const projects = [
   {
     id: 1,
-    title: 'Seven Koncepts - Company Website',
-    description: 'Full-stack company website with modern design and responsive layout',
+    title: 'University Dashboard System',
+    description: 'A comprehensive, full-fledged academic management system streamlining administrative workflows, student data, and course management.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+    image: '/sevenkoncepts1.png', // Placeholder, needs user image
+    category: 'Full Stack',
+    link: '#',
+    github: '#',
+    logo: '🎓',
+    animatedIcon: '📚',
+    gradient: 'var(--electric-coral)',
+    accent: 'var(--cyan-mist)',
+    client: 'University Project',
+  },
+  {
+    id: 2,
+    title: 'Freelancer Lead Scraper',
+    description: 'A powerful tool for freelancers to extract leads from Google Maps. Features business name using automation/city filtering to find businesses without websites or social media presence.',
+    tech: ['Python', 'Selenium', 'Automation', 'Data Mining'],
+    image: '/fastfoodexpress1.png', // Placeholder
+    category: 'Automation Tool',
+    link: '#',
+    github: '#',
+    logo: '🔍',
+    animatedIcon: '🤖',
+    gradient: 'var(--cyan-mist)',
+    accent: 'var(--electric-coral)',
+    client: 'Freelance Tool',
+  },
+  {
+    id: 3,
+    title: 'Warden of Hades',
+    description: 'A AAA-quality Soul-like action RPG developed in Unreal Engine 5. Features advanced combat mechanics, stunning 3D environments, and AI-driven enemy behavior inspired by Elden Ring & Sekiro.',
+    tech: ['Unreal Engine 5', 'C++', 'Blueprints', '3D Modeling'],
+    image: '/Moan1.png', // Placeholder
+    category: 'Game Dev',
+    link: '#',
+    github: '#',
+    logo: '⚔️',
+    animatedIcon: '🔥',
+    gradient: 'var(--electric-coral)',
+    accent: 'var(--cyan-mist)',
+    client: 'FYP Project',
+  },
+  {
+    id: 4,
+    title: 'Seven Koncepts Corporate Deck',
+    description: 'A robust, high-performance corporate platform built to bridge the gap between complex backend logic and a seamless user interface.',
     tech: ['React', 'Next.js', 'Tailwind CSS', 'Node.js'],
     image: '/sevenkoncepts1.png',
     category: 'Full Stack',
@@ -22,9 +97,9 @@ const projects = [
     client: 'Mir Shehryar Khan',
   },
   {
-    id: 2,
-    title: 'Fast Food Express',
-    description: 'Modern fast food ordering platform with real-time features',
+    id: 5,
+    title: 'Fast Food Express Hub',
+    description: 'An ultra-fast ordering system that handles real-time traffic with zero lag. Designed for volume and speed.',
     tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
     image: '/fastfoodexpress1.png',
     category: 'Full Stack',
@@ -37,39 +112,39 @@ const projects = [
     client: 'Personal Project',
   },
   {
-    id: 3,
-    title: 'Moan Sale - E-commerce Platform',
-    description: 'Fruits and vegetables e-commerce platform with advanced features',
+    id: 6,
+    title: 'Moan Sale Digital Market',
+    description: 'A feature-rich e-commerce infrastructure with secure Stripe integration and a smooth, intuitive checkout experience.',
     tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     image: '/Moan1.png',
     category: 'E-Commerce',
     link: 'https://moan.sale',
     github: '#',
-    logo: '🥬',
+    logo: '🥩',
     animatedIcon: '🛒',
     gradient: 'var(--electric-coral)',
     accent: 'var(--cyan-mist)',
     client: 'Personal Project',
   },
   {
-    id: 4,
-    title: 'Eternal Aspirants - Company Website',
-    description: 'Professional company website built with WordPress',
+    id: 7,
+    title: 'Eternal Aspirants Portal',
+    description: 'A professional WordPress ecosystem built for high authority and search engine dominance, tailored for growth.',
     tech: ['WordPress', 'PHP', 'JavaScript', 'CSS3'],
     image: '/eternalaspirants.png',
     category: 'WordPress',
     link: 'https://eternalaspirants.com',
     github: '#',
-    logo: '📝',
+    logo: '📑',
     animatedIcon: '✨',
     gradient: 'var(--cyan-mist)',
     accent: 'var(--electric-coral)',
     client: 'Company Client',
   },
   {
-    id: 5,
-    title: 'Elysia Distribution - Business Website',
-    description: 'Professional distribution company website with modern design',
+    id: 8,
+    title: 'Elysia Business Matrix',
+    description: 'Custom distribution management interface that streamlines operations and visualizes data for better decision making.',
     tech: ['WordPress', 'PHP', 'JavaScript', 'SCSS'],
     image: '/elysiadistribution.png',
     category: 'WordPress',
@@ -82,9 +157,9 @@ const projects = [
     client: 'Syed Qammar',
   },
   {
-    id: 6,
-    title: 'Imya UK - E-commerce Store',
-    description: 'Modern e-commerce website with advanced shopping features',
+    id: 9,
+    title: 'Imya UK Fashion Hub',
+    description: 'A modern, high-converting retail store with a custom WooCommerce checkout and advanced product filtering.',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'JavaScript'],
     image: '/imya1.png',
     category: 'WordPress',
@@ -97,9 +172,9 @@ const projects = [
     client: 'Imaya',
   },
   {
-    id: 7,
-    title: 'DellNux - Electronics Store',
-    description: 'E-commerce store specializing in earbuds and watches',
+    id: 10,
+    title: 'DellNux Electronics Arc',
+    description: 'A sleek Shopify storefront optimized for mobile users, featuring custom Liquid templates for a unique brand feel.',
     tech: ['Shopify', 'Liquid', 'JavaScript', 'CSS3'],
     image: '/Dellnux.png',
     category: 'Shopify',
@@ -111,378 +186,131 @@ const projects = [
     accent: 'var(--cyan-mist)',
     client: 'Muhammad Bilal',
   },
-  {
-    id: 8,
-    title: 'Prime Seller Store',
-    description: 'Professional e-commerce platform with modern design',
-    tech: ['Shopify', 'Liquid', 'JavaScript', 'HTML5'],
-    image: '/primesellerstore.png',
-    category: 'Shopify',
-    link: 'https://primeseller.store',
-    github: '#',
-    logo: '🏪',
-    animatedIcon: '⭐',
-    gradient: 'var(--cyan-mist)',
-    accent: 'var(--electric-coral)',
-    client: 'Muhammad Kawish',
-  },
 ];
 
-// Cyber project card with neon effects
-function CyberProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const rotateX = useTransform(mouseY, [-100, 100], [5, -5]);
-  const rotateY = useTransform(mouseX, [-100, 100], [-5, 5]);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
+const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   return (
     <motion.div
-      ref={cardRef}
-      className="relative group cursor-pointer"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        mouseX.set(0);
-        mouseY.set(0);
-        setIsHovered(false);
-      }}
-      style={{ perspective: 1000 }}
-      initial={{ opacity: 0, y: 50 }}
+      className="group relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors duration-500"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{
         delay: index * 0.1,
-        type: 'spring',
-        stiffness: 120,
-        damping: 18,
+        duration: 0.5,
+        ease: [0.4, 0.0, 0.2, 1],
       }}
     >
-      {/* Holographic Border */}
-      <div className="absolute inset-0 rounded-2xl p-1">
-        <motion.div
-          className="w-full h-full rounded-2xl"
-          style={{
-            background: `linear-gradient(45deg, ${project.gradient}, ${project.accent}, ${project.gradient})`,
-            backgroundSize: '400% 400%',
-          }}
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+      {/* Image Container - Aspect Ratio 16:9 */}
+      <div className="relative aspect-video overflow-hidden">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+        <div className="absolute inset-0 bg-obsidian-black/20 group-hover:bg-transparent transition-colors duration-500" />
       </div>
 
-      {/* Main Card */}
-      <motion.div
-        className="relative rounded-2xl overflow-hidden cyber-glass backdrop-blur-md"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-          backgroundColor: 'rgba(12, 12, 13, 0.8)',
-          borderColor: 'rgba(217, 227, 242, 0.2)',
-        }}
-        whileHover={{ 
-          scale: 1.03,
-        }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      >
-        {/* Image Container */}
-        <div className="relative h-64 overflow-hidden">
-          <Image
-            src={project.image}
-            alt={project.title}
-            width={400}
-            height={256}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          
-          {/* Cyber Overlay */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-obsidian-black/80 via-transparent to-transparent"
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          />
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-6 sm:p-8">
 
-          {/* Cyber Scan Lines */}
-          <motion.div
-            className="absolute inset-0 overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {Array.from({ length: 3 }, (_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-full h-px"
-                style={{
-                  background: `linear-gradient(90deg, transparent, ${project.gradient}, transparent)`,
-                  top: `${25 + i * 25}%`,
-                }}
-                animate={{
-                  x: ['-100%', '100%'],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.3,
-                }}
-              />
-            ))}
-          </motion.div>
-
-          {/* Simplified Floating Particles - reduced from 4 to 1 */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <motion.div
-              className="absolute w-1 h-1 rounded-full"
-              style={{
-                background: project.gradient,
-                left: '50%',
-                top: '50%',
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0, 0.6, 0],
-                scale: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-6">
-          {/* Category Badge & Client Info */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-            <motion.div
-              className="inline-block px-3 py-1 rounded-full text-xs font-medium"
-              style={{
-                background: `linear-gradient(135deg, ${project.gradient}, ${project.accent})`,
-                color: 'var(--obsidian-black)',
-              }}
-              whileHover={{ scale: 1.05 }}
-            >
+        {/* Header */}
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <div className="text-xs font-medium text-electric-coral mb-2 tracking-wider uppercase">
               {project.category}
-            </motion.div>
-            <motion.div
-              className="text-xs px-2 py-1 rounded-full cyber-glass"
-              style={{ color: 'var(--slate-gray)' }}
-              whileHover={{ color: 'var(--cyan-mist)' }}
-            >
-              Client: {project.client}
-            </motion.div>
+            </div>
+            <h3 className="text-2xl font-bold text-white group-hover:text-electric-coral transition-colors duration-300">
+              {project.title}
+            </h3>
           </div>
-
-          {/* Title */}
-          <motion.h3
-            className="text-xl font-bold mb-2"
-            style={{ color: 'var(--snow-white)' }}
-            whileHover={{ color: project.gradient }}
-            transition={{ duration: 0.3 }}
-          >
-            {project.title}
-          </motion.h3>
-
-          {/* Description */}
-          <motion.p
-            className="text-sm mb-4 leading-relaxed"
-            style={{ color: 'var(--slate-gray)' }}
-          >
-            {project.description}
-          </motion.p>
-
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tech.map((tech, i) => (
-              <motion.span
-                key={tech}
-                className="px-2 py-1 rounded text-xs font-medium cyber-glass"
-                style={{ color: 'var(--snow-white)' }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                whileHover={{
-                  scale: 1.1,
-                  color: project.gradient,
-                }}
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </div>
-
-          {/* Action Button */}
-          <div className="flex justify-center">
-            <motion.a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300"
-              style={{
-                background: `linear-gradient(135deg, ${project.gradient}, ${project.accent})`,
-                color: 'var(--obsidian-black)',
-              }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: `0 0 20px ${project.gradient}`,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ExternalLink size={18} />
-              View Website
-            </motion.a>
-          </div>
+          <a href={project.github} target="_blank" rel="noopener" className="text-slate-500 hover:text-white transition-colors">
+            <Github size={20} />
+          </a>
         </div>
 
-        {/* Hover Glow Effect */}
-        <motion.div
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-          style={{
-            background: `radial-gradient(circle, ${project.gradient}, transparent)`,
-            filter: 'blur(20px)',
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0, 0.3, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </motion.div>
+        {/* Description */}
+        <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+          {project.description}
+        </p>
+
+        {/* Tech Stack - Minimal Pills */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.tech.map((tech) => (
+            <span
+              key={tech}
+              className="px-2.5 py-1 text-xs font-medium rounded-full bg-white/5 text-slate-300 border border-white/5"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {/* Footer Action */}
+        <div className="mt-auto">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white group/link"
+          >
+            <span className="border-b border-transparent group-hover/link:border-electric-coral transition-all">View Project</span>
+            <ExternalLink size={16} className="text-electric-coral transform transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+          </a>
+        </div>
+      </div>
     </motion.div>
   );
-}
+});
+
+CyberProjectCard.displayName = 'CyberProjectCard';
 
 export function Projects() {
   return (
-    <section id="projects" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="projects" className="py-24 sm:py-32 relative overflow-hidden bg-obsidian-black">
       {/* Background Effects */}
-      <div className="absolute inset-0 cyber-grid opacity-5" />
-      
-      {/* Optimized Floating Cyber Orbs - reduced from 6 to 2 */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 2 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full blur-3xl"
-            style={{
-              width: 200 + i * 100,
-              height: 200 + i * 100,
-              left: `${25 + i * 50}%`,
-              top: `${20 + i * 60}%`,
-              background: i % 2 === 0 
-                ? 'radial-gradient(circle, rgba(255,62,92,0.1), transparent)' 
-                : 'radial-gradient(circle, rgba(137,255,240,0.1), transparent)',
-            }}
-            animate={{
-              x: [0, 40, -30, 0],
-              y: [0, -35, 45, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 15 + i * 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 4,
-            }}
-          />
-        ))}
-      </div>
+      <div className="absolute inset-0 cyber-grid opacity-[0.03]" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-        >
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl mb-4 font-bold"
-            style={{ color: 'var(--snow-white)' }}
-            animate={{
-              textShadow: [
-                "0 0 10px var(--electric-coral)",
-                "0 0 20px var(--electric-coral), 0 0 30px var(--cyan-mist)",
-                "0 0 10px var(--electric-coral)"
-              ]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            Featured <span className="cyber-gradient-text">Projects</span>
-          </motion.h2>
-          <motion.p
-            className="text-lg sm:text-xl max-w-2xl mx-auto"
-            style={{ color: 'var(--slate-gray)' }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            Showcasing innovative solutions and cutting-edge development
-          </motion.p>
-        </motion.div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4">
+              Selected <span className="cyber-gradient-text">Works</span>
+            </h2>
+            <p className="text-xl text-slate-400 max-w-xl">
+              A curated selection of projects demonstrating high-performance engineering and design.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/10 hover:bg-white/5 text-white transition-all font-medium"
+            >
+              View GitHub <Github size={18} />
+            </a>
+          </motion.div>
+        </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <CyberProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
-        {/* Bottom CTA */}
-          <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-        >
-          <motion.a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 cyber-button text-lg font-semibold"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 40px var(--electric-coral)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Sparkles size={20} />
-            View All Projects
-            <Zap size={20} />
-          </motion.a>
-          </motion.div>
       </div>
     </section>
   );

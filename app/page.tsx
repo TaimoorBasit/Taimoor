@@ -1,72 +1,77 @@
 "use client";
 
-import { BackgroundEffects } from '../components/BackgroundEffects'
-import { CyberCursorTrail, PageTransition } from '../components/CyberEffects'
-import { Header } from '../components/Header'
-import { Hero } from '../components/Hero'
-import { About } from '../components/About'
-import { Skills } from '../components/Skills'
-import { Projects } from '../components/Projects'
-import { Testimonials } from '../components/Testimonials'
-import { Services } from '../components/Services'
-import { Contact } from '../components/Contact'
-import { Footer } from '../components/Footer'
-import { useEffect } from 'react'
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
+
+import { Header } from '../components/Header';
+import { HeroWebFindLead as Hero } from '../components/sections/hero-webfindlead';
+
+const About = dynamic(() => import('../components/About').then(mod => ({ default: mod.About })), {
+  ssr: true,
+});
+
+const Skills = dynamic(() => import('../components/Skills').then(mod => ({ default: mod.Skills })), {
+  ssr: true,
+});
+
+const Projects = dynamic(() => import('../components/Projects').then(mod => ({ default: mod.Projects })), {
+  ssr: true,
+});
+
+const Tools = dynamic(() => import('../components/Tools').then(mod => ({ default: mod.Tools })), {
+  ssr: true,
+});
+
+const Testimonials = dynamic(() => import('../components/Testimonials').then(mod => ({ default: mod.Testimonials })), {
+  ssr: true,
+});
+
+const Services = dynamic(() => import('../components/Services').then(mod => ({ default: mod.Services })), {
+  ssr: true,
+});
+
+const Blog = dynamic(() => import('../components/Blog').then(mod => ({ default: mod.Blog })), {
+  ssr: true,
+});
+
+const TheProcess = dynamic(() => import('../components/sections/TheProcess').then(mod => ({ default: mod.TheProcess })), {
+  ssr: true,
+});
+
+const FAQ = dynamic(() => import('../components/sections/FAQ').then(mod => ({ default: mod.FAQ })), {
+  ssr: true,
+});
+
+const Contact = dynamic(() => import('../components/Contact').then(mod => ({ default: mod.Contact })), {
+  ssr: true,
+});
+
+const Footer = dynamic(() => import('../components/Footer').then(mod => ({ default: mod.Footer })), {
+  ssr: true,
+});
 
 export default function Home() {
   useEffect(() => {
-    // Ensure all buttons and links are clickable
-    const ensureClickability = () => {
-      const allButtons = document.querySelectorAll('a, button, [role="button"]');
-      allButtons.forEach(element => {
-        (element as HTMLElement).style.pointerEvents = 'auto';
-        (element as HTMLElement).style.cursor = 'pointer';
-        (element as HTMLElement).style.userSelect = 'none';
-      });
-    };
-
-    // Run immediately and after a delay to catch dynamically loaded elements
-    ensureClickability();
-    setTimeout(ensureClickability, 1000);
-    setTimeout(ensureClickability, 3000);
-
-    // Handle smooth scrolling for anchor links
-    const handleAnchorClick = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
-        e.preventDefault();
-        const href = target.getAttribute('href');
-        if (href) {
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      }
-    };
-
-    document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
+    // Native browser anchors with CSS scroll-behavior: smooth handles this more reliably
+    // We only need to ensure sections have IDs (which they do)
   }, []);
 
   return (
     <div className="min-h-screen bg-obsidian-black relative scroll-container">
-      <BackgroundEffects />
-      <CyberCursorTrail />
       <div className="relative z-10">
-        <PageTransition>
-          <Header />
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Testimonials />
-            <Services />
-            <Contact />
-          </main>
-          <Footer />
-        </PageTransition>
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Services />
+          <TheProcess />
+          <Projects />
+          <Skills />
+          <Testimonials />
+          <FAQ />
+          <Contact />
+        </main>
+        <Footer />
       </div>
     </div>
   )

@@ -2,30 +2,31 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Mail, MapPin, Phone, Send, Linkedin, Instagram, Zap, Sparkles, Code } from 'lucide-react';
+import { Send, Zap, Sparkles, Code, ExternalLink, Calendar, ArrowRight } from 'lucide-react';
+import { FaEnvelope, FaPhone, FaLocationDot, FaWhatsapp } from 'react-icons/fa6';
+import { SiLinkedin, SiInstagram } from 'react-icons/si';
 import { toast } from 'sonner';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'mohammad.taimoor850@gmail.com', href: 'mailto:mohammad.taimoor850@gmail.com' },
-  { icon: Phone, label: 'Phone', value: '+92 348 5552644', href: 'tel:+923485552644' },
-  { icon: MapPin, label: 'Location', value: 'Pakistan', href: '#' },
+  { icon: FaEnvelope, label: 'Email', value: 'mohammad.taimoor850@gmail.com', href: 'mailto:mohammad.taimoor850@gmail.com' },
+  { icon: FaPhone, label: 'Contact', value: '+1 (972) 688-7170', href: 'tel:+19726887170' },
 ];
 
 const socialLinks = [
-  { icon: Linkedin, label: 'LinkedIn', url: 'https://www.linkedin.com/in/mohammad-taimoor' },
-  { icon: Instagram, label: 'Instagram', url: 'https://www.instagram.com/tamouriii?igsh=cmx3YW00am4wdTNx' },
+  { icon: SiLinkedin, label: 'LinkedIn', url: 'https://www.linkedin.com/in/mohammad-taimoor' },
+  { icon: SiInstagram, label: 'Instagram', url: 'https://www.instagram.com/tamouriii?igsh=cmx3YW00am4wdTNx' },
 ];
 
 // Cyber input field with glowing effects
-function CyberInput({ 
-  id, 
-  name, 
-  type = 'text', 
-  value, 
-  onChange, 
-  placeholder, 
-  required = false, 
-  rows = undefined 
+function CyberInput({
+  id,
+  name,
+  type = 'text',
+  value,
+  onChange,
+  placeholder,
+  required = false,
+  rows = undefined
 }: {
   id: string;
   name: string;
@@ -49,7 +50,7 @@ function CyberInput({
         <motion.div
           className="w-full h-full rounded-xl"
           style={{
-            background: isFocused 
+            background: isFocused
               ? 'linear-gradient(45deg, var(--electric-coral), var(--cyan-mist), var(--electric-coral))'
               : 'linear-gradient(45deg, rgba(217,227,242,0.2), rgba(217,227,242,0.1), rgba(217,227,242,0.2))',
             backgroundSize: '400% 400%',
@@ -151,11 +152,19 @@ function CyberInput({
   );
 }
 
+const budgetOptions = [
+  "Under $1k",
+  "$1k - $5k",
+  "$5k - $10k",
+  "$10k+",
+];
+
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    company: '',
+    budget: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -163,316 +172,186 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    toast.success('Message sent successfully! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    toast.success('Application received. I will be in touch shortly.');
+    setFormData({ name: '', email: '', company: '', budget: '', message: '' });
     setIsSubmitting(false);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden bg-obsidian-black border-t border-white/5">
       {/* Background Effects */}
-      <div className="absolute inset-0 cyber-grid opacity-5" />
-      
-      {/* Optimized Floating Cyber Orbs - reduced from 5 to 2 */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 2 }, (_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full blur-2xl"
-            style={{
-              width: 160 + i * 60,
-              height: 160 + i * 60,
-              left: `${25 + i * 50}%`,
-              top: `${20 + i * 60}%`,
-              background: i % 2 === 0 
-                ? 'radial-gradient(circle, rgba(255,62,92,0.1), transparent)' 
-                : 'radial-gradient(circle, rgba(137,255,240,0.1), transparent)',
-            }}
-            animate={{
-              x: [0, 30, -20, 0],
-              y: [0, -25, 35, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 10 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 2,
-            }}
-          />
-        ))}
-      </div>
+      <div className="absolute inset-0 cyber-grid opacity-[0.03]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
-            style={{ color: 'var(--snow-white)' }}
-            animate={{
-              textShadow: [
-                "0 0 10px var(--electric-coral)",
-                "0 0 20px var(--electric-coral), 0 0 30px var(--cyan-mist)",
-                "0 0 10px var(--electric-coral)"
-              ]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            Get in <span className="cyber-gradient-text">Touch</span>
-          </motion.h2>
-          <motion.p
-            className="text-lg sm:text-xl max-w-2xl mx-auto"
-            style={{ color: 'var(--slate-gray)' }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            Have a project in mind? Let&apos;s work together to create something amazing
-          </motion.p>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          {/* Left: Context & Info */}
           <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18 }}
+            transition={{ duration: 0.6 }}
           >
-            <div>
-              <motion.h3
-                className="text-2xl mb-6 font-bold"
-                style={{ color: 'var(--snow-white)' }}
-                whileHover={{ color: 'var(--electric-coral)' }}
-              >
-                Contact Information
-              </motion.h3>
-              <div className="space-y-4">
-                {contactInfo.map((info, i) => (
-                  <motion.div
-                    key={info.label}
-                    className="flex items-center gap-4 rounded-xl p-4 group"
-                    style={{
-                      backgroundColor: 'rgba(12, 12, 13, 0.8)',
-                      borderColor: 'rgba(255, 62, 92, 0.2)',
-                      borderWidth: '1px',
-                      borderStyle: 'solid',
-                    }}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    whileHover={{ x: 4, scale: 1.02 }}
-                  >
-                    <motion.div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
-                      style={{
-                        background: 'linear-gradient(135deg, var(--electric-coral), var(--cyan-mist))',
-                        boxShadow: '0 0 15px var(--electric-coral)',
-                      }}
-                      whileHover={{ rotate: 5, scale: 1.1 }}
-                    >
-                      <info.icon size={20} style={{ color: 'var(--obsidian-black)' }} />
-                    </motion.div>
-                    <div>
-                      <div className="text-sm" style={{ color: 'var(--slate-gray)' }}>{info.label}</div>
-                      <motion.div
-                        className="font-medium"
-                        style={{ color: 'var(--snow-white)' }}
-                        whileHover={{ color: 'var(--cyan-mist)' }}
-                      >
-                        {info.value}
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight leading-[1.1]">
+              Ready to <span className="cyber-gradient-text">Scale?</span>
+            </h2>
+            <p className="text-xl text-slate-400 mb-8 leading-relaxed font-light">
+              I only work with clients who are serious about growth. If you're ready to build high-performance infrastructure, let's talk.
+            </p>
+
+            <div className="mb-12 p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
+              <div className="flex items-start gap-4">
+                <div className="p-2 rounded-lg bg-electric-coral/10 text-electric-coral">
+                  <Zap size={20} />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">Direct Partnership</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    You get me—not an account manager or a junior dev. No agency fluff, just direct access and high-level execution.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div>
-              <motion.h3
-                className="text-2xl mb-6 font-bold"
-                style={{ color: 'var(--snow-white)' }}
-                whileHover={{ color: 'var(--electric-coral)' }}
-              >
-                Follow Me
-              </motion.h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social, i) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-14 h-14 rounded-xl flex items-center justify-center group"
-                    style={{
-                      backgroundColor: 'rgba(12, 12, 13, 0.8)',
-                      borderColor: 'rgba(255, 62, 92, 0.2)',
-                      borderWidth: '1px',
-                      borderStyle: 'solid',
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    whileHover={{
-                      y: -8,
-                      scale: 1.1,
-                      boxShadow: '0 0 30px var(--electric-coral)',
-                    }}
-                  >
-                    <social.icon size={24} className="text-cyan-mist group-hover:text-electric-coral transition-colors" />
-                  </motion.a>
-                ))}
-              </div>
+            <div className="space-y-8 mb-12">
+              {contactInfo.map((info) => (
+                <a
+                  key={info.label}
+                  href={info.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="flex items-center gap-6 group"
+                >
+                  <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-electric-coral/50 group-hover:bg-electric-coral/10 transition-all duration-300">
+                    <info.icon size={24} className="text-slate-300 group-hover:text-electric-coral transition-colors" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold mb-1">{info.label}</div>
+                    <div className="text-lg text-white font-medium group-hover:text-electric-coral transition-colors">{info.value}</div>
+                  </div>
+                </a>
+              ))}
             </div>
 
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-white hover:bg-white/5 transition-all"
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right: Application Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18 }}
+            transition={{ duration: 0.6 }}
+            className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 backdrop-blur-sm"
           >
-            <form onSubmit={handleSubmit} className="rounded-2xl p-8 backdrop-blur-md"
-                  style={{
-                    backgroundColor: 'rgba(12, 12, 13, 0.9)',
-                    borderColor: 'rgba(255, 62, 92, 0.3)',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                  }}>
-              <div className="space-y-6">
-                <div>
-                  <motion.label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium"
-                    style={{ color: 'var(--snow-white)' }}
-                    whileHover={{ color: 'var(--cyan-mist)' }}
-                  >
-                    Your Name
-                  </motion.label>
-                  <CyberInput
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-slate-300 ml-1">Name</label>
+                  <input
+                    type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="John Doe"
                     required
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all placeholder:text-slate-600"
+                    placeholder="Jane Doe"
                   />
                 </div>
-
-                <div>
-                  <motion.label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium"
-                    style={{ color: 'var(--snow-white)' }}
-                    whileHover={{ color: 'var(--cyan-mist)' }}
-                  >
-                    Email Address
-                  </motion.label>
-                  <CyberInput
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-slate-300 ml-1">Email</label>
+                  <input
+                    type="email"
                     id="email"
                     name="email"
-                    type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="john@example.com"
                     required
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all placeholder:text-slate-600"
+                    placeholder="jane@company.com"
                   />
                 </div>
-
-                <div>
-                  <motion.label
-                    htmlFor="subject"
-                    className="block mb-2 text-sm font-medium"
-                    style={{ color: 'var(--snow-white)' }}
-                    whileHover={{ color: 'var(--cyan-mist)' }}
-                  >
-                    Subject
-                  </motion.label>
-                  <CyberInput
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Project Inquiry"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <motion.label
-                    htmlFor="message"
-                    className="block mb-2 text-sm font-medium"
-                    style={{ color: 'var(--snow-white)' }}
-                    whileHover={{ color: 'var(--cyan-mist)' }}
-                  >
-                    Message
-                  </motion.label>
-                  <CyberInput
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project..."
-                    required
-                    rows={6}
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 rounded-xl cyber-button text-lg font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
-                  whileHover={{ 
-                    scale: isSubmitting ? 1 : 1.02,
-                    boxShadow: "0 0 30px var(--electric-coral)"
-                  }}
-                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <motion.div
-                        className="w-5 h-5 border-2 border-obsidian-black border-t-transparent rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                      />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles size={20} />
-                      Send Message
-                      <Send size={20} />
-                    </>
-                  )}
-                </motion.button>
               </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="company" className="text-sm font-medium text-slate-300 ml-1">Company</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all placeholder:text-slate-600"
+                    placeholder="Acme Inc."
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="budget" className="text-sm font-medium text-slate-300 ml-1">Budget</label>
+                  <select
+                    id="budget"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all appearance-none"
+                  >
+                    <option value="" disabled className="text-slate-500">Select Range</option>
+                    {budgetOptions.map((opt) => (
+                      <option key={opt} value={opt} className="bg-obsidian-black text-white">{opt}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium text-slate-300 ml-1">Project Details</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all placeholder:text-slate-600 resize-none"
+                  placeholder="Tell me about your goals..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-electric-coral to-cyan-mist text-obsidian-black font-bold text-lg hover:shadow-[0_0_30px_-5px_rgba(255,62,92,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transform active:scale-[0.98]"
+              >
+                {isSubmitting ? 'Processing...' : (
+                  <>
+                    Send Application <ArrowRight size={20} />
+                  </>
+                )}
+              </button>
             </form>
           </motion.div>
+
         </div>
       </div>
     </section>

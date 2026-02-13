@@ -11,6 +11,12 @@ module.exports = {
         mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
+        'obsidian-black': '#0C0C0D',
+        'electric-coral': '#FF3E5C',
+        'cyan-mist': '#89FFF0',
+        'holographic-silver': '#D9E3F2',
+        'snow-white': '#F9FAFB',
+        'slate-gray': '#7B7E8D',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: {
@@ -73,8 +79,16 @@ module.exports = {
         'slide-down': 'slideDown 0.5s ease-out',
         'scale-in': 'scaleIn 0.3s ease-out',
         'bounce-gentle': 'bounceGentle 2s infinite',
+        'spotlight': 'spotlight 2s ease .75s 1 forwards',
+        'scan': 'scan 3s linear infinite',
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
       keyframes: {
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -95,10 +109,25 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        spotlight: {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate(-50%,-40%) scale(1)",
+          },
+        },
+        scan: {
+          "0%": { bottom: "-100%" },
+          "100%": { bottom: "200%" },
+        },
       },
     },
   },
   plugins: [],
 }
+
 
 

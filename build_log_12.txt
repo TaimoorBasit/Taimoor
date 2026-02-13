@@ -1,0 +1,32 @@
+
+> portfolio-website@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.33
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/6) ...
+   Generating static pages (1/6) 
+   Generating static pages (2/6) 
+   Generating static pages (4/6) 
+ ✓ Generating static pages (6/6)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    1.82 kB        89.6 kB
+├ ○ /_not-found                          873 B          88.7 kB
+├ ○ /scroll-demo                         47 kB           135 kB
+└ ○ /spline-demo                         10.6 kB        98.4 kB
++ First Load JS shared by all            87.8 kB
+  ├ chunks/117-31047cdcdcc4b1b9.js       31.6 kB
+  ├ chunks/fd9d1056-34ac56cb32b70ed4.js  53.6 kB
+  └ other shared chunks (total)          2.54 kB
+
+
+○  (Static)  prerendered as static content
+

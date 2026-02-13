@@ -1,0 +1,21 @@
+
+> portfolio-website@0.1.0 build
+> next build
+
+E:\MWP\node_modules\next\dist\cli\next-build.js:1
+﻿#!/usr/bin/env node
+ ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (node:internal/modules/cjs/loader:1662:18)
+    at Module._compile (node:internal/modules/cjs/loader:1704:20)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at cjsLoader (node:internal/modules/esm/translators:266:5)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:200:7)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+
+Node.js v22.16.0

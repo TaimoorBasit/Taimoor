@@ -1,0 +1,24 @@
+
+> portfolio-website@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.33
+
+   Creating an optimized production build ...
+
+> Build error occurred
+SyntaxError: Unexpected token '﻿', "﻿{
+  "nam"... is not valid JSON
+while determining default 'output.uniqueName' from 'name' in E:\MWP\package.json
+    at JSON.parse (<anonymous>)
+    at E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:587886
+    at F (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:578611)
+    at applyOutputDefaults (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:587557)
+    at applyWebpackOptionsDefaults (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:580183)
+    at createCompiler (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:1467460)
+    at create (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:1468029)
+    at webpack (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:1468340)
+    at f (E:\MWP\node_modules\next\dist\compiled\webpack\bundle5.js:28:895636)
+    at E:\MWP\node_modules\next\dist\build\compiler.js:35:47 {
+  type: 'SyntaxError'
+}

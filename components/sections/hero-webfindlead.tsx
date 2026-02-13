@@ -156,7 +156,7 @@ export function HeroWebFindLead() {
                             <div className="absolute -inset-10 bg-electric-coral/5 blur-3xl rounded-full pointer-events-none -z-10" />
 
                             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[1.05] drop-shadow-2xl">
-                                Architecting <br />
+                                Engineering <br />
                                 <span className="cyber-gradient-text block mt-2 pb-4">
                                     <RotatingWords />
                                 </span>

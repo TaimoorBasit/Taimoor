@@ -89,7 +89,7 @@ function CyberTestimonialCard({ testimonial, index }: { testimonial: typeof test
 
         {/* Content */}
         <blockquote className="text-slate-300 leading-relaxed mb-8 flex-grow text-lg font-light">
-          "{testimonial.content}"
+          &quot;{testimonial.content}&quot;
         </blockquote>
 
         {/* Author */}

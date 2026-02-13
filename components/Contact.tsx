@@ -203,7 +203,7 @@ export function Contact() {
               Ready to <span className="cyber-gradient-text">Scale?</span>
             </h2>
             <p className="text-xl text-slate-400 mb-8 leading-relaxed font-light">
-              I only work with clients who are serious about growth. If you're ready to build high-performance infrastructure, let's talk.
+              I only work with clients who are serious about growth. If you&apos;re ready to build high-performance infrastructure, let&apos;s talk.
             </p>
 
             <div className="mb-12 p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 backdrop-blur-sm">

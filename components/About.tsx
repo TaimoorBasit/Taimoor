@@ -122,10 +122,10 @@ export function About() {
 
               <div className="space-y-6 text-lg text-slate-300 leading-relaxed font-light">
                 <p>
-                  <strong className="text-white font-medium">The Problem:</strong> Most developers write code. They don't understand business. This leads to beautiful products that don't sell, or complex systems that don't scale.
+                  <strong className="text-white font-medium">The Problem:</strong> Most developers write code. They don&apos;t understand business. This leads to beautiful products that don&apos;t sell, or complex systems that don&apos;t scale.
                 </p>
                 <p>
-                  <strong className="text-white font-medium">My Approach:</strong> With a background in <span className="text-electric-coral">7-figure E-commerce</span> scaling and a Computer Science degree, I don't just build features—I architect growth engines.
+                  <strong className="text-white font-medium">My Approach:</strong> With a background in <span className="text-electric-coral">7-figure E-commerce</span> scaling and a Computer Science degree, I don&apos;t just build features—I architect growth engines.
                 </p>
                 <p>
                   From <strong>University Dashboards</strong> to <strong>Autonomous AI Agents</strong> and <strong className="text-cyan-mist">AAA Unreal Engine implementations</strong>, I merge deep technical engineering with aggressive business strategy.

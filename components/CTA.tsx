@@ -46,7 +46,7 @@ export function CTA() {
                         </h2>
 
                         <p className="text-slate-gray text-lg sm:text-xl max-w-2xl mx-auto mb-6">
-                            Whether you have a groundbreaking idea or a complex problem to solve, I'm here to build your next digital masterpiece.
+                            Whether you have a groundbreaking idea or a complex problem to solve, I&apos;m here to build your next digital masterpiece.
                         </p>
 
                         <motion.div

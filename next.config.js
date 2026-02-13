@@ -44,8 +44,8 @@ const nextConfig = {
   // Production optimizations
   productionBrowserSourceMaps: false,
 
-  // Transpile ESM packages
-  transpilePackages: ['@splinetool/react-spline'],
+  // Transpile ESM packages (Spline + runtime for Vercel/build resolution)
+  transpilePackages: ['@splinetool/react-spline', '@splinetool/runtime'],
 }
 
 module.exports = withBundleAnalyzer(nextConfig)

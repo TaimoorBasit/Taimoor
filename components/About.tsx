@@ -95,7 +95,6 @@ export function About() {
                   fill
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 400px"
-                  priority
                 />
 
                 {/* Modern Overlay */}

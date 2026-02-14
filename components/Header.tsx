@@ -111,7 +111,8 @@ export function Header() {
 
             {/* Center: Logo (Absolutely Positioned) */}
             <motion.div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="absolute left-1/2 top-1/2"
+              initial={{ x: "-50%", y: "-50%" }}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >

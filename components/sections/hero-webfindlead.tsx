@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Search, Sparkles, ArrowRight } from "lucide-react";
 import { Spotlight } from "@/components/ui/spotlight";
 
@@ -60,55 +60,20 @@ const DeferredSpline = () => {
 };
 
 export function HeroWebFindLead() {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    // Smooth spring animation for cursor tracking
-    const springConfig = { damping: 25, stiffness: 150 };
-    const springX = useSpring(mouseX, springConfig);
-    const springY = useSpring(mouseY, springConfig);
-
-    // subtle parallax for grid
-    const rotateX = useTransform(springY, [-500, 500], [5, -5]);
-    const rotateY = useTransform(springX, [-500, 500], [-5, 5]);
-
-    function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-        const { left, top, width, height } = currentTarget.getBoundingClientRect();
-        const x = clientX - left - width / 2;
-        const y = clientY - top - height / 2;
-        mouseX.set(x);
-        mouseY.set(y);
-    }
-
     return (
         <section
-            className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-obsidian-black pt-32 perspective-1000"
-            onMouseMove={handleMouseMove}
+            className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-obsidian-black pt-32"
         >
             {/* 0. Animated Background Layer */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                {/* Ethereal Cursor Shadow */}
-                <motion.div
-                    className="absolute w-[800px] h-[800px] bg-electric-coral/10 rounded-full blur-[120px] opacity-30"
-                    style={{
-                        x: springX,
-                        y: springY,
-                        position: 'absolute',
-                        left: '50%',
-                        top: '50%',
-                        translateX: '-50%',
-                        translateY: '-50%',
-                    }}
+                {/* Static Ethereal Glow - optimized */}
+                <div
+                    className="absolute w-[800px] h-[800px] bg-electric-coral/5 rounded-full blur-[100px] opacity-20 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 />
 
-                {/* Animated Grid */}
-                <motion.div
-                    className="absolute inset-[-50%] w-[200%] h-[200%] cyber-grid opacity-[0.07]"
-                    style={{
-                        rotateX,
-                        rotateY,
-                        perspective: 1000,
-                    }}
+                {/* Static Grid */}
+                <div
+                    className="absolute inset-[-50%] w-[200%] h-[200%] cyber-grid opacity-[0.05]"
                 />
             </div>
 

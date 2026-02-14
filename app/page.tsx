@@ -1,7 +1,4 @@
-"use client";
-
 import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
 
 import { Header } from '../components/Header';
 import { HeroWebFindLead as Hero } from '../components/sections/hero-webfindlead';
@@ -51,10 +48,6 @@ const Footer = dynamic(() => import('../components/Footer').then(mod => ({ defau
 });
 
 export default function Home() {
-  useEffect(() => {
-    // Native browser anchors with CSS scroll-behavior: smooth handles this more reliably
-    // We only need to ensure sections have IDs (which they do)
-  }, []);
 
   return (
     <div className="min-h-screen bg-obsidian-black relative scroll-container">

@@ -47,22 +47,6 @@ const RotatingWords = () => {
 };
 
 const DeferredSpline = () => {
-    const [shouldLoad, setShouldLoad] = useState(false);
-
-    useEffect(() => {
-        // Defer loading significantly to prioritize LCP and TTI
-        const timer = setTimeout(() => setShouldLoad(true), 3000);
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (!shouldLoad) {
-        return (
-            <div className="w-full h-full flex items-center justify-center">
-                {/* Optional: Lightweight placeholder or nothing */}
-            </div>
-        );
-    }
-
     return (
         <motion.div
             initial={{ opacity: 0 }}

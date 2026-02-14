@@ -111,11 +111,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://prod.spline.design" />
       </head>
-      <body className="min-h-screen bg-background text-foreground font-inter antialiased selection:bg-electric-coral/30 selection:text-white">
+      <body className="min-h-screen bg-background text-foreground font-inter antialiased selection:bg-electric-coral/30 selection:text-white" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

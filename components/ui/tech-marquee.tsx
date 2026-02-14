@@ -38,64 +38,6 @@ export const TechMarquee = ({
     className?: string;
 }) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
-    const scrollerRef = React.useRef<HTMLUListElement>(null);
-
-    useEffect(() => {
-        addAnimation();
-    }, []);
-
-    const [start, setStart] = useState(false);
-
-    function addAnimation() {
-        if (containerRef.current && scrollerRef.current) {
-            const scrollerContent = Array.from(scrollerRef.current.children);
-
-            // Duplicate content multiple times to ensure no gaps on wide screens
-            // Total 4 sets (1 original + 3 copies) to ensure seamless loop
-            // and sufficient width for 4K screens.
-            for (let i = 0; i < 3; i++) {
-                scrollerContent.forEach((item) => {
-                    const duplicatedItem = item.cloneNode(true);
-                    if (scrollerRef.current) {
-                        scrollerRef.current.appendChild(duplicatedItem);
-                    }
-                });
-            }
-
-            getDirection();
-            getSpeed();
-            setStart(true);
-        }
-    }
-
-    const getDirection = () => {
-        if (containerRef.current) {
-            if (direction === "left") {
-                containerRef.current.style.setProperty(
-                    "--animation-direction",
-                    "forwards"
-                );
-            } else {
-                containerRef.current.style.setProperty(
-                    "--animation-direction",
-                    "reverse"
-                );
-            }
-        }
-    };
-
-    const getSpeed = () => {
-        if (containerRef.current) {
-            if (speed === "fast") {
-                containerRef.current.style.setProperty("--animation-duration", "80s");
-            } else if (speed === "normal") {
-                containerRef.current.style.setProperty("--animation-duration", "160s");
-            } else {
-                containerRef.current.style.setProperty("--animation-duration", "320s");
-            }
-        }
-    };
-
     return (
         <div
             ref={containerRef}
@@ -103,19 +45,21 @@ export const TechMarquee = ({
                 "scroller relative z-20 w-full overflow-hidden",
                 className
             )}
+            style={{
+                "--animation-direction": direction === "left" ? "forwards" : "reverse",
+                "--animation-duration": speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s",
+            } as React.CSSProperties}
         >
             <ul
-                ref={scrollerRef}
                 className={cn(
-                    "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap",
-                    start && "animate-scroll",
+                    "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap animate-scroll",
                     pauseOnHover && "hover:[animation-play-state:paused]"
                 )}
             >
-                {techStack.map((tech, idx) => (
+                {[...techStack, ...techStack, ...techStack].map((tech, idx) => (
                     <li
                         className="w-[100px] h-[80px] max-w-full relative flex flex-col items-center justify-center flex-shrink-0 transition-transform duration-300 hover:scale-110"
-                        key={tech.name + idx}
+                        key={`${tech.name}-${idx}`}
                     >
                         <tech.icon
                             className="w-10 h-10 mb-3"

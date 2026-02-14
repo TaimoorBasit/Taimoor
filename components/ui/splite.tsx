@@ -12,10 +12,10 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
     const [shouldLoad, setShouldLoad] = useState(false)
 
     useEffect(() => {
-        // Prioritize LCP: Defer Spline load until after initial paint
+        // Prioritize LCP: Defer Spline load slightly (reduced to 50ms) to unblock initial paint but feel immediate
         const timer = setTimeout(() => {
             setShouldLoad(true)
-        }, 500) // 500ms delay to let the main thread breathe for LCP
+        }, 50)
         return () => clearTimeout(timer)
     }, [])
 

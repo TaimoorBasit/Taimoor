@@ -49,26 +49,11 @@ const RotatingWords = () => {
 const DeferredSpline = () => {
     return (
         <div className="w-full h-full relative">
-            {/* Mobile Fallback: Simplified visual that looks like the 3D scene but is lightweight */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1 }}
-                className="lg:hidden w-full h-full flex items-center justify-center"
-            >
-                <div className="relative w-64 h-64">
-                    <div className="absolute inset-0 bg-electric-coral/20 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute inset-4 bg-cyan-mist/20 rounded-full blur-2xl animate-pulse delay-75" />
-                    <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/50 w-32 h-32" />
-                </div>
-            </motion.div>
-
-            {/* Desktop: Full 3D Scene */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
-                className="hidden lg:block w-full h-full"
+                className="w-full h-full"
             >
                 <SplineSceneBasic />
             </motion.div>
@@ -191,9 +176,9 @@ export function HeroWebFindLead() {
                             transition={{ duration: 1.5, ease: "easeOut" }}
                             className="w-full h-full relative"
                         >
-                            {/* Decorative Frame - Desktop Only */}
-                            <div className="hidden lg:block absolute -inset-4 border border-white/5 rounded-3xl -z-10 rotate-3 scale-95 opacity-50" />
-                            <div className="hidden lg:block absolute -inset-4 border border-electric-coral/10 rounded-3xl -z-10 -rotate-2 scale-105 opacity-50" />
+                            {/* Decorative Frame */}
+                            <div className="absolute -inset-4 border border-white/5 rounded-3xl -z-10 rotate-3 scale-95 opacity-50" />
+                            <div className="absolute -inset-4 border border-electric-coral/10 rounded-3xl -z-10 -rotate-2 scale-105 opacity-50" />
 
                             <DeferredSpline />
                         </motion.div>

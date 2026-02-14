@@ -112,6 +112,9 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://prod.spline.design" />
+      </head>
       <body className="min-h-screen bg-background text-foreground font-inter antialiased selection:bg-electric-coral/30 selection:text-white">
         <script
           type="application/ld+json"

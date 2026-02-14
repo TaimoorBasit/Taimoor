@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono, Orbitron, Space_Grotesk } from 'next/font/google'
 import { Toaster } from 'sonner'
 import '../styles/globals.css'
+import { BackgroundEffects } from '@/components/BackgroundEffects'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -31,7 +32,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Taimoor Awan | Architecting Digital Ecosystems',
+    default: 'Taimoor Awan | Full Stack Engineering & AI Solutions',
     template: '%s | Taimoor Awan'
   },
   description: 'Elite Full Stack Engineering & AI Solutions. I build high-ticket digital infrastructure for scaling businesses.',
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://taimoor.dev',
-    title: 'Taimoor Awan | Architecting Digital Ecosystems',
+    title: 'Taimoor Awan | Full Stack Engineering & AI Solutions',
     description: 'Elite Full Stack Engineering & AI Solutions. I build high-ticket digital infrastructure for scaling businesses.',
     siteName: 'Taimoor Awan Portfolio',
     images: [
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Taimoor Awan | Architecting Digital Ecosystems',
+    title: 'Taimoor Awan | Full Stack Engineering & AI Solutions',
     description: 'Elite Full Stack Engineering & AI Solutions.',
     creator: '@taimoor_dev',
   },
@@ -150,6 +151,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <BackgroundEffects />
         {children}
         <Toaster position="top-right" richColors theme="dark" />
       </body>

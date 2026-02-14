@@ -1,20 +1,19 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Smartphone, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import {
-  SiNextdotjs, SiWordpress, SiShopify, SiGoogleanalytics,
-  SiCss3, SiLighthouse
+  SiNextdotjs, SiShopify, SiGoogleanalytics,
+  SiN8N, SiGooglemaps, SiUnrealengine
 } from 'react-icons/si';
 
 const services = [
   {
-    icon: Zap,
+    icon: SiN8N,
     title: 'AI & Automation',
     description: 'Automate your business workflows with n8n and AI chatbots. I build custom solutions that save hours of manual work.',
     features: ['Custom Chatbots', 'Workflow Automation', 'Lead Scoring', 'Auto-Appointment'],
-    price: 'Custom',
-    gradient: 'var(--electric-coral)',
+    gradient: '#FF6D5A',
     accent: 'var(--cyan-mist)',
   },
   {
@@ -22,8 +21,7 @@ const services = [
     title: 'Full Stack Apps',
     description: 'Enterprise-grade web applications like University Dashboards and CRM systems tailored to your specific operational needs.',
     features: ['React & Next.js', 'Secure Database', 'User Management', 'Scalable Architecture'],
-    price: 'From $1000',
-    gradient: 'var(--cyan-mist)',
+    gradient: '#FFFFFF',
     accent: 'var(--electric-coral)',
   },
   {
@@ -31,26 +29,23 @@ const services = [
     title: 'E-commerce Mastery',
     description: 'Comprehensive store setup and scaling. From Amazon FBA strategy to high-converting Shopify & WooCommerce stores.',
     features: ['Store Optimization', 'SEO & Marketing', 'Private Label Ops', 'Dropshipping Setup'],
-    price: 'From $500',
-    gradient: 'var(--electric-coral)',
+    gradient: '#96BF48',
     accent: 'var(--cyan-mist)',
   },
   {
-    icon: Sparkles,
+    icon: SiGooglemaps,
     title: 'Lead Generation',
     description: 'Custom tools to scrape Google Maps and gather targeted business leads by city and niche, with or without websites.',
     features: ['Google Maps Scraper', 'Targeted Data', 'Email Extraction', 'Competitor Analysis'],
-    price: 'From $300',
-    gradient: 'var(--cyan-mist)',
+    gradient: '#4285F4',
     accent: 'var(--electric-coral)',
   },
   {
-    icon: Smartphone,
+    icon: SiUnrealengine,
     title: 'Game Development',
     description: 'Engaging AAA-quality games (Soul-like, Action RPG) using Unreal Engine 5. I bring immersive worlds and advanced mechanics to life.',
     features: ['Unreal Engine 5', 'C++ & Blueprints', 'AI Enemy Logic', '3D Environments'],
-    price: 'Custom',
-    gradient: 'var(--electric-coral)',
+    gradient: '#FFFFFF',
     accent: 'var(--cyan-mist)',
   },
   {
@@ -58,8 +53,7 @@ const services = [
     title: 'SEO & Forensics',
     description: 'Advanced technical SEO to rank #1, plus digital forensics insights to secure your business data and infrastructure.',
     features: ['Technical SEO', 'Keyword Dominance', 'Security Audit', 'Data Recovery'],
-    price: 'From $250',
-    gradient: 'var(--cyan-mist)',
+    gradient: '#E37400',
     accent: 'var(--electric-coral)',
   },
 ];
@@ -99,9 +93,6 @@ function CyberServiceCard({ service, index }: { service: typeof services[0]; ind
               style={{ color: service.gradient }}
               className="transition-colors duration-300"
             />
-          </div>
-          <div className="text-sm font-medium px-3 py-1 rounded-full bg-white/5 border border-white/5 text-slate-400 group-hover:text-white transition-colors">
-            {service.price}
           </div>
         </div>
 

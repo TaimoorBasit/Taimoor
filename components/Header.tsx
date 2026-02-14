@@ -131,7 +131,7 @@ export function Header() {
               whileTap={{ scale: 0.95 }}
               onClick={(e) => scrollToSection(e, '#contact')}
             >
-              Let&apos;s Connect
+              Get in Touch
             </motion.a>
             {/* Mobile placeholder to balance spacing if needed, but flex-between handles it */}
             <div className="sm:hidden w-9" />
@@ -154,7 +154,7 @@ export function Header() {
                     className="flex items-center justify-center w-full px-4 py-3 rounded-xl cyber-button text-sm font-bold tracking-wide"
                     onClick={(e) => scrollToSection(e, '#contact')}
                   >
-                    Let&apos;s Connect
+                    Get in Touch
                   </a>
                 </div>
 

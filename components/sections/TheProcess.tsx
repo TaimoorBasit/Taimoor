@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Search, Code, Rocket, CheckCircle, ArrowRight } from 'lucide-react';
+import { Search, Code, Rocket } from 'lucide-react';
 
 const steps = [
     {
@@ -23,6 +23,30 @@ const steps = [
         color: "#D9E3F2",
     },
 ];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.4,
+            delayChildren: 0.3
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            type: "spring",
+            stiffness: 50,
+            damping: 15
+        }
+    }
+};
 
 export function TheProcess() {
     return (
@@ -52,18 +76,27 @@ export function TheProcess() {
                 </div>
 
                 {/* Steps Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8 relative"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
 
                     {/* Connecting Line (Desktop) */}
-                    <div className="hidden md:block absolute top-[60px] left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <motion.div
+                        className="hidden md:block absolute top-[60px] left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-transparent via-electric-coral/30 to-transparent"
+                        initial={{ scaleX: 0, originX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                    />
 
                     {steps.map((step, index) => (
                         <motion.div
                             key={step.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2, duration: 0.5 }}
+                            variants={itemVariants}
                             className="relative group text-center"
                         >
                             {/* Icon Circle */}
@@ -90,7 +123,7 @@ export function TheProcess() {
                             </p>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
             </div>
         </section>

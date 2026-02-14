@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 const contactInfo = [
   { icon: FaEnvelope, label: 'Email', value: 'mohammad.taimoor850@gmail.com', href: 'mailto:mohammad.taimoor850@gmail.com' },
-  { icon: FaPhone, label: 'Contact', value: '+1 (972) 688-7170', href: 'tel:+19726887170' },
+  { icon: FaPhone, label: 'Contact', value: '+1 (972) 688-7170', href: 'https://wa.me/19726887170' },
 ];
 
 const socialLinks = [
@@ -163,6 +163,7 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     budget: '',
     message: '',
@@ -172,9 +173,28 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    toast.success('Application received. I will be in touch shortly.');
-    setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+
+    // Simulate processing delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Construct WhatsApp Message
+    const message = `*New Project Inquiry*
+    
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone || 'N/A'}
+*Company:* ${formData.company || 'N/A'}
+*Budget:* ${formData.budget}
+*Message:*
+${formData.message}`;
+
+    const whatsappUrl = `https://wa.me/19726887170?text=${encodeURIComponent(message)}`;
+
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+
+    toast.success('Redirecting to WhatsApp...');
+    setFormData({ name: '', email: '', phone: '', company: '', budget: '', message: '' });
     setIsSubmitting(false);
   };
 
@@ -279,6 +299,21 @@ export function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-medium text-slate-300 ml-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all placeholder:text-slate-600"
+                    placeholder="+1 (555) 000-0000"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-slate-300 ml-1">Email</label>
                   <input
                     type="email"
@@ -291,9 +326,6 @@ export function Contact() {
                     placeholder="jane@company.com"
                   />
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="company" className="text-sm font-medium text-slate-300 ml-1">Company</label>
                   <input
@@ -306,22 +338,23 @@ export function Contact() {
                     placeholder="Acme Inc."
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="budget" className="text-sm font-medium text-slate-300 ml-1">Budget</label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all appearance-none"
-                  >
-                    <option value="" disabled className="text-slate-500">Select Range</option>
-                    {budgetOptions.map((opt) => (
-                      <option key={opt} value={opt} className="bg-obsidian-black text-white">{opt}</option>
-                    ))}
-                  </select>
-                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="budget" className="text-sm font-medium text-slate-300 ml-1">Budget</label>
+                <select
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all appearance-none"
+                >
+                  <option value="" disabled className="text-slate-500">Select Range</option>
+                  {budgetOptions.map((opt) => (
+                    <option key={opt} value={opt} className="bg-obsidian-black text-white">{opt}</option>
+                  ))}
+                </select>
               </div>
 
               <div className="space-y-2">
@@ -341,11 +374,11 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-electric-coral to-cyan-mist text-obsidian-black font-bold text-lg hover:shadow-[0_0_30px_-5px_rgba(255,62,92,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transform active:scale-[0.98]"
+                className="w-full cyber-button text-lg font-bold py-4 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Processing...' : (
                   <>
-                    Send Application <ArrowRight size={20} />
+                    Send Message <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </button>

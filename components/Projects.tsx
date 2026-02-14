@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState, useRef, memo } from 'react';
-import { ExternalLink, Github, X, Zap, Code, Sparkles, MapPin, Gamepad2, GraduationCap } from 'lucide-react';
+import { ExternalLink, Github, X, Zap, Code, Sparkles, MapPin, Gamepad2, GraduationCap, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import {
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiTypescript,
@@ -38,56 +38,11 @@ const getTechIcon = (techName: string) => {
 const projects = [
   {
     id: 1,
-    title: 'University Dashboard System',
-    description: 'A comprehensive, full-fledged academic management system streamlining administrative workflows, student data, and course management.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-    image: '/sevenkoncepts1.png', // Placeholder, needs user image
-    category: 'Full Stack',
-    link: '#',
-    github: '#',
-    logo: '🎓',
-    animatedIcon: '📚',
-    gradient: 'var(--electric-coral)',
-    accent: 'var(--cyan-mist)',
-    client: 'University Project',
-  },
-  {
-    id: 2,
-    title: 'Freelancer Lead Scraper',
-    description: 'A powerful tool for freelancers to extract leads from Google Maps. Features business name using automation/city filtering to find businesses without websites or social media presence.',
-    tech: ['Python', 'Selenium', 'Automation', 'Data Mining'],
-    image: '/fastfoodexpress1.png', // Placeholder
-    category: 'Automation Tool',
-    link: '#',
-    github: '#',
-    logo: '🔍',
-    animatedIcon: '🤖',
-    gradient: 'var(--cyan-mist)',
-    accent: 'var(--electric-coral)',
-    client: 'Freelance Tool',
-  },
-  {
-    id: 3,
-    title: 'Warden of Hades',
-    description: 'A AAA-quality Soul-like action RPG developed in Unreal Engine 5. Features advanced combat mechanics, stunning 3D environments, and AI-driven enemy behavior inspired by Elden Ring & Sekiro.',
-    tech: ['Unreal Engine 5', 'C++', 'Blueprints', '3D Modeling'],
-    image: '/Moan1.png', // Placeholder
-    category: 'Game Dev',
-    link: '#',
-    github: '#',
-    logo: '⚔️',
-    animatedIcon: '🔥',
-    gradient: 'var(--electric-coral)',
-    accent: 'var(--cyan-mist)',
-    client: 'FYP Project',
-  },
-  {
-    id: 4,
-    title: 'Seven Koncepts Corporate Deck',
-    description: 'A robust, high-performance corporate platform built to bridge the gap between complex backend logic and a seamless user interface.',
-    tech: ['React', 'Next.js', 'Tailwind CSS', 'Node.js'],
+    title: 'Seven Koncepts',
+    description: 'An exceptional corporate website that perfectly represents the brand, featuring a modern design and seamless user experience.',
+    tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
     image: '/sevenkoncepts1.png',
-    category: 'Full Stack',
+    category: 'Corporate',
     link: 'https://sevenkoncepts.com',
     github: '#',
     logo: '🏢',
@@ -97,101 +52,116 @@ const projects = [
     client: 'Mir Shehryar Khan',
   },
   {
+    id: 2,
+    title: 'Elysia Distribution',
+    description: 'A beautiful, functional business website that transforms a vision into reality, streamlining operations and digital presence.',
+    tech: ['WordPress', 'PHP', 'SCSS', 'JavaScript'],
+    image: '/elysiadistribution.png',
+    category: 'Business',
+    link: 'https://elysiadistribution.com',
+    github: '#',
+    logo: '🏭',
+    animatedIcon: '📊',
+    gradient: 'var(--cyan-mist)',
+    accent: 'var(--electric-coral)',
+    client: 'Syed Qammar',
+  },
+  {
+    id: 3,
+    title: 'DellNux Electronics',
+    description: 'A stunning Shopify e-commerce store optimized for sales and mobile users, delivering a significant boost in revenue.',
+    tech: ['Shopify', 'Liquid', 'JavaScript', 'CSS3'],
+    image: '/Dellnux.png',
+    category: 'E-Commerce',
+    link: 'https://dellnux.com',
+    github: '#',
+    logo: '🎧',
+    animatedIcon: '🛍️',
+    gradient: 'var(--electric-coral)',
+    accent: 'var(--cyan-mist)',
+    client: 'Muhammad Bilal',
+  },
+  {
+    id: 4,
+    title: 'Prime Seller Store',
+    description: 'A robust Shopify store with perfect functionality and modern design, creating an outstanding shopping experience for customers.',
+    tech: ['Shopify', 'Liquid', 'Theme Dev', 'SEO'],
+    image: '/primesellerstore.png',
+    category: 'E-Commerce',
+    link: 'https://primeseller.store',
+    github: '#',
+    logo: '🛒',
+    animatedIcon: '✨',
+    gradient: 'var(--cyan-mist)',
+    accent: 'var(--electric-coral)',
+    client: 'Muhammad Kawish',
+  },
+  {
     id: 5,
-    title: 'Fast Food Express Hub',
-    description: 'An ultra-fast ordering system that handles real-time traffic with zero lag. Designed for volume and speed.',
+    title: 'Imya UK Fashion',
+    description: 'A beautiful WordPress e-commerce site that is fast, responsive, and user-friendly, perfectly matching the brand identity.',
+    tech: ['WordPress', 'WooCommerce', 'PHP', 'MySQL'],
+    image: '/imya1.png',
+    category: 'Fashion',
+    link: 'https://imya.uk',
+    github: '#',
+    logo: '👗',
+    animatedIcon: '💳',
+    gradient: 'var(--electric-coral)',
+    accent: 'var(--cyan-mist)',
+    client: 'Imaya',
+  },
+  {
+    id: 6,
+    title: 'Eternal Aspirants',
+    description: 'Professional WordPress development delivering a clean, modern company website that meets exact business requirements. ',
+    tech: ['WordPress', 'PHP', 'JavaScript', 'CSS3'],
+    image: '/eternalaspirants.png',
+    category: 'Corporate',
+    link: 'https://eternalaspirants.com',
+    github: '#',
+    logo: '📑',
+    animatedIcon: '🚀',
+    gradient: 'var(--cyan-mist)',
+    accent: 'var(--electric-coral)',
+    client: 'Company Client',
+  },
+  {
+    id: 7,
+    title: 'Fast Food Express',
+    description: 'An ultra-fast ordering system designed for volume and speed, handling real-time traffic with zero lag.',
     tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
     image: '/fastfoodexpress1.png',
     category: 'Full Stack',
     link: 'https://fastfoodexpress.vercel.app',
     github: '#',
     logo: '🍔',
-    animatedIcon: '🚀',
-    gradient: 'var(--cyan-mist)',
-    accent: 'var(--electric-coral)',
+    animatedIcon: '🔥',
+    gradient: 'var(--electric-coral)',
+    accent: 'var(--cyan-mist)',
     client: 'Personal Project',
   },
   {
-    id: 6,
-    title: 'Moan Sale Digital Market',
+    id: 8,
+    title: 'Moan Sale Market',
     description: 'A feature-rich e-commerce infrastructure with secure Stripe integration and a smooth, intuitive checkout experience.',
     tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     image: '/Moan1.png',
-    category: 'E-Commerce',
+    category: 'Full Stack',
     link: 'https://moan.sale',
     github: '#',
     logo: '🥩',
     animatedIcon: '🛒',
-    gradient: 'var(--electric-coral)',
-    accent: 'var(--cyan-mist)',
+    gradient: 'var(--cyan-mist)',
+    accent: 'var(--electric-coral)',
     client: 'Personal Project',
-  },
-  {
-    id: 7,
-    title: 'Eternal Aspirants Portal',
-    description: 'A professional WordPress ecosystem built for high authority and search engine dominance, tailored for growth.',
-    tech: ['WordPress', 'PHP', 'JavaScript', 'CSS3'],
-    image: '/eternalaspirants.png',
-    category: 'WordPress',
-    link: 'https://eternalaspirants.com',
-    github: '#',
-    logo: '📑',
-    animatedIcon: '✨',
-    gradient: 'var(--cyan-mist)',
-    accent: 'var(--electric-coral)',
-    client: 'Company Client',
-  },
-  {
-    id: 8,
-    title: 'Elysia Business Matrix',
-    description: 'Custom distribution management interface that streamlines operations and visualizes data for better decision making.',
-    tech: ['WordPress', 'PHP', 'JavaScript', 'SCSS'],
-    image: '/elysiadistribution.png',
-    category: 'WordPress',
-    link: 'https://elysiadistribution.com',
-    github: '#',
-    logo: '🏭',
-    animatedIcon: '📊',
-    gradient: 'var(--electric-coral)',
-    accent: 'var(--cyan-mist)',
-    client: 'Syed Qammar',
-  },
-  {
-    id: 9,
-    title: 'Imya UK Fashion Hub',
-    description: 'A modern, high-converting retail store with a custom WooCommerce checkout and advanced product filtering.',
-    tech: ['WordPress', 'WooCommerce', 'PHP', 'JavaScript'],
-    image: '/imya1.png',
-    category: 'WordPress',
-    link: 'https://imya.uk',
-    github: '#',
-    logo: '🛍️',
-    animatedIcon: '💳',
-    gradient: 'var(--cyan-mist)',
-    accent: 'var(--electric-coral)',
-    client: 'Imaya',
-  },
-  {
-    id: 10,
-    title: 'DellNux Electronics Arc',
-    description: 'A sleek Shopify storefront optimized for mobile users, featuring custom Liquid templates for a unique brand feel.',
-    tech: ['Shopify', 'Liquid', 'JavaScript', 'CSS3'],
-    image: '/Dellnux.png',
-    category: 'Shopify',
-    link: 'https://dellnux.com',
-    github: '#',
-    logo: '🎧',
-    animatedIcon: '⌚',
-    gradient: 'var(--electric-coral)',
-    accent: 'var(--cyan-mist)',
-    client: 'Muhammad Bilal',
   },
 ];
 
 const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   return (
     <motion.div
-      className="group relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden hover:border-white/10 transition-colors duration-500"
+      className="group relative flex flex-col h-full bg-[#0C0C0D] border border-white/10 rounded-2xl overflow-hidden hover:border-electric-coral/50 transition-all duration-500 hover:shadow-[0_0_30px_-10px_rgba(255,62,92,0.2)]"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -201,63 +171,83 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
         ease: [0.4, 0.0, 0.2, 1],
       }}
     >
-      {/* Image Container - Aspect Ratio 16:9 */}
-      <div className="relative aspect-video overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-obsidian-black/20 group-hover:bg-transparent transition-colors duration-500" />
+      {/* Mockup / Browser Frame */}
+      <div className="relative border-b border-white/5 bg-black/50">
+        <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+        </div>
+
+        <div className="relative aspect-[16/10] overflow-hidden group-hover:opacity-90 transition-opacity">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          {/* Overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian-black/80 via-transparent to-transparent opacity-60" />
+        </div>
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-grow p-6 sm:p-8">
+      <div className="flex flex-col flex-grow p-6 sm:p-8 relative">
 
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <div className="text-xs font-medium text-electric-coral mb-2 tracking-wider uppercase">
+        {/* Category & Title */}
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-xs font-bold text-electric-coral tracking-widest uppercase">
               {project.category}
             </div>
-            <h3 className="text-2xl font-bold text-white group-hover:text-electric-coral transition-colors duration-300">
-              {project.title}
-            </h3>
+            <div className="p-2 rounded-full bg-white/5 border border-white/10 text-xl">
+              {project.logo}
+            </div>
           </div>
-          <a href={project.github} target="_blank" rel="noopener" className="text-slate-500 hover:text-white transition-colors">
-            <Github size={20} />
-          </a>
+
+          <h3 className="text-2xl font-bold text-white group-hover:text-electric-coral transition-colors duration-300 font-orbitron">
+            {project.title}
+          </h3>
         </div>
 
         {/* Description */}
-        <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+        <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow border-l-2 border-white/5 pl-4">
           {project.description}
         </p>
 
-        {/* Tech Stack - Minimal Pills */}
+        {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 mb-8">
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 text-xs font-medium rounded-full bg-white/5 text-slate-300 border border-white/5"
+              className="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-md bg-white/5 text-slate-300 border border-white/10 group-hover:border-white/20 transition-colors"
             >
               {tech}
             </span>
           ))}
         </div>
 
-        {/* Footer Action */}
-        <div className="mt-auto">
+        {/* Actions - Premium Buttons */}
+        <div className="mt-auto grid grid-cols-2 gap-4">
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white group/link"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-white text-obsidian-black font-bold text-sm hover:bg-electric-coral hover:text-white transition-all duration-300 shadow-[0_0_15px_-5px_rgba(255,255,255,0.3)]"
           >
-            <span className="border-b border-transparent group-hover/link:border-electric-coral transition-all">View Project</span>
-            <ExternalLink size={16} className="text-electric-coral transform transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+            Live Demo
+            <ExternalLink size={14} />
+          </a>
+
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-white/10 text-white font-medium text-sm hover:bg-white/10 transition-all duration-300"
+          >
+            Source Code
+            <Github size={14} />
           </a>
         </div>
       </div>
@@ -269,13 +259,14 @@ CyberProjectCard.displayName = 'CyberProjectCard';
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 sm:py-32 relative overflow-hidden bg-obsidian-black">
+    <section id="projects" className="py-24 sm:py-32 relative overflow-hidden bg-obsidian-black/95">
       {/* Background Effects */}
-      <div className="absolute inset-0 cyber-grid opacity-[0.03]" />
+      <div className="absolute inset-0 cyber-grid opacity-[0.02]" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-white/5 pb-8">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -285,8 +276,8 @@ export function Projects() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4">
               Selected <span className="cyber-gradient-text">Works</span>
             </h2>
-            <p className="text-xl text-slate-400 max-w-xl">
-              A curated selection of projects demonstrating high-performance engineering and design.
+            <p className="text-lg text-slate-400 max-w-xl border-l-4 border-electric-coral pl-6 py-1">
+              High-impact digital solutions engineered for performance and scale.
             </p>
           </motion.div>
 
@@ -297,10 +288,11 @@ export function Projects() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/10 hover:bg-white/5 text-white transition-all font-medium"
+              href="https://github.com/taimoor-awan"
+              target='_blank'
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/10 hover:border-electric-coral text-white transition-all font-medium group"
             >
-              View GitHub <Github size={18} />
+              View Full Portfolio <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
         </div>

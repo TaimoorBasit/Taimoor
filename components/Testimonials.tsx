@@ -80,7 +80,7 @@ function CyberTestimonialCard({ testimonial, index }: { testimonial: typeof test
       }}
     >
       <div
-        className="relative h-full p-8 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.04] hover:border-white/10 flex flex-col"
+        className="relative h-full p-8 rounded-2xl bg-[#0F0F10] border border-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-[#151516] hover:border-electric-coral/30 hover:shadow-[0_0_30px_-10px_rgba(255,62,92,0.15)] flex flex-col group-hover:-translate-y-1"
       >
         {/* Quote Icon */}
         <div className="mb-6 opacity-30 group-hover:opacity-100 transition-opacity">

@@ -9,15 +9,15 @@ import { useRef, useEffect } from 'react';
 import { useInView, useSpring, useTransform } from 'framer-motion';
 
 const stats = [
-  { icon: FaLayerGroup, label: 'Systems Architected', value: 27, suffix: '', color: '#61DAFB' },
+  { icon: FaLayerGroup, label: 'Successful Projects', value: 27, suffix: '', color: '#61DAFB' },
   { icon: FaCheckDouble, label: 'Active Clients', value: 12, suffix: '+', color: '#777BB4' },
-  { icon: FaClock, label: 'Years Experience', value: 5, suffix: '+', color: '#F7DF1E' },
+  { icon: FaClock, label: 'Years Experience', value: 3.5, suffix: '', color: '#F7DF1E', decimals: 1 },
   { icon: FaBullseye, label: 'Delivery Rate', value: 100, suffix: '%', color: '#E34F26' },
 ];
 
-function AnimatedNumber({ value }: { value: number }) {
+function AnimatedNumber({ value, decimals = 0 }: { value: number, decimals?: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   const spring = useSpring(0, {
     mass: 1,
@@ -25,7 +25,7 @@ function AnimatedNumber({ value }: { value: number }) {
     damping: 30,
   });
 
-  const displayValue = useTransform(spring, (current) => Math.round(current));
+  const displayValue = useTransform(spring, (current) => current.toFixed(decimals));
 
   useEffect(() => {
     if (isInView) {
@@ -57,7 +57,7 @@ function StatCard({ stat, index }: { stat: typeof stats[0], index: number }) {
       </div>
       <div className="text-2xl sm:text-3xl font-bold mb-2 cyber-gradient-text"
         style={{ color: 'var(--snow-white)' }}>
-        <AnimatedNumber value={stat.value} />{stat.suffix}
+        <AnimatedNumber value={stat.value} decimals={stat.decimals} />{stat.suffix}
       </div>
       <div className="text-sm transition-colors"
         style={{ color: 'var(--slate-gray)' }}>
@@ -137,7 +137,7 @@ export function About() {
               {stats.map((stat, index) => (
                 <div key={index} className="space-y-1">
                   <div className="text-3xl font-bold text-white flex items-baseline gap-1">
-                    <AnimatedNumber value={stat.value} />
+                    <AnimatedNumber value={stat.value} decimals={stat.decimals} />
                     <span style={{ color: stat.color }}>{stat.suffix}</span>
                   </div>
                   <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">{stat.label}</div>

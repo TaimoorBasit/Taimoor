@@ -74,6 +74,7 @@ export function AIChatbot() {
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="p-2 hover:bg-white/5 rounded-full text-slate-gray transition-colors"
+                                aria-label="Close chat assistant"
                             >
                                 <X size={20} />
                             </button>
@@ -92,8 +93,8 @@ export function AIChatbot() {
                                     className={`flex ${msg.role === 'bot' ? 'justify-start' : 'justify-end'}`}
                                 >
                                     <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.role === 'bot'
-                                            ? 'bg-white/5 border border-white/10 text-snow-white rounded-tl-none'
-                                            : 'bg-electric-coral text-white rounded-tr-none'
+                                        ? 'bg-white/5 border border-white/10 text-snow-white rounded-tl-none'
+                                        : 'bg-electric-coral text-white rounded-tr-none'
                                         }`}>
                                         {msg.content}
                                     </div>
@@ -114,16 +115,19 @@ export function AIChatbot() {
                         <div className="p-4 bg-obsidian-black/50 border-t border-white/10">
                             <div className="flex gap-2">
                                 <input
+                                    id="chat-input"
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                                     placeholder="Ask me anything..."
                                     className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-snow-white focus:outline-none focus:border-electric-coral transition-colors"
+                                    aria-label="Ask a question about Taimoor"
                                 />
                                 <button
                                     onClick={handleSend}
                                     className="w-10 h-10 rounded-full bg-electric-coral text-white flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-xl shadow-electric-coral/20"
+                                    aria-label="Send message"
                                 >
                                     <Send size={18} />
                                 </button>
@@ -138,6 +142,7 @@ export function AIChatbot() {
                 className="w-16 h-16 rounded-full bg-gradient-to-br from-electric-coral to-cyan-mist flex items-center justify-center shadow-2xl shadow-electric-coral/20 relative group"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
             >
                 <div className="absolute inset-0 rounded-full bg-electric-coral animate-ping opacity-20 pointer-events-none" />
                 {isOpen ? (

@@ -39,6 +39,7 @@ const RotatingWords = () => {
                 exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
                 className="text-electric-coral inline-block py-1"
+                aria-live="polite"
             >
                 {words[index]}
             </motion.span>
@@ -47,6 +48,20 @@ const RotatingWords = () => {
 };
 
 const DeferredSpline = () => {
+    const [shouldLoad, setShouldLoad] = useState(false);
+
+    useEffect(() => {
+        // Defer Spline loading by 2 seconds to prioritize main content
+        const timer = setTimeout(() => setShouldLoad(true), 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (!shouldLoad) return (
+        <div className="flex items-center justify-center w-full h-full">
+            <div className="w-8 h-8 rounded-full border-2 border-cyan-mist/30 border-t-cyan-mist animate-spin" aria-hidden="true" />
+        </div>
+    );
+
     return (
         <div className="w-full h-full relative">
             <motion.div

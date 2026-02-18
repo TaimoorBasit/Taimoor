@@ -64,22 +64,27 @@ export function FAQ() {
                             <button
                                 onClick={() => toggleFAQ(index)}
                                 className="flex items-center justify-between w-full p-6 text-left focus:outline-none"
+                                aria-expanded={openIndex === index}
+                                aria-controls={`faq-answer-${index}`}
                             >
-                                <span className="text-lg font-semibold text-slate-200 group-hover:text-white transition-colors">
+                                <span className="text-lg font-semibold text-white group-hover:text-electric-coral transition-colors">
                                     {faq.question}
                                 </span>
                                 <span className="p-2 rounded-full bg-white/5 text-electric-coral group-hover:bg-electric-coral group-hover:text-white transition-all duration-300">
-                                    {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
+                                    {openIndex === index ? <Minus size={16} aria-hidden="true" /> : <Plus size={16} aria-hidden="true" />}
                                 </span>
                             </button>
 
                             <div
+                                id={`faq-answer-${index}`}
                                 className={`transition-all duration-300 ease-in-out ml-6 mr-6 border-l border-white/10 pl-6 ${openIndex === index
-                                        ? 'max-h-48 opacity-100 pb-6 mb-2 mt-2'
-                                        : 'max-h-0 opacity-0 overflow-hidden'
+                                    ? 'max-h-48 opacity-100 pb-6 mb-2 mt-2'
+                                    : 'max-h-0 opacity-0 overflow-hidden'
                                     }`}
+                                role="region"
+                                aria-labelledby={`faq-question-${index}`}
                             >
-                                <p className="text-slate-400 leading-relaxed text-sm md:text-base">
+                                <p className="text-slate-200 leading-relaxed text-sm md:text-base">
                                     {faq.answer}
                                 </p>
                             </div>

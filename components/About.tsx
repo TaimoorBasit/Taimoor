@@ -140,7 +140,7 @@ export function About() {
                     <AnimatedNumber value={stat.value} decimals={stat.decimals} />
                     <span style={{ color: stat.color }}>{stat.suffix}</span>
                   </div>
-                  <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">{stat.label}</div>
+                  <div className="text-sm text-slate-200 uppercase tracking-wider font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>

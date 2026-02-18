@@ -9,7 +9,8 @@
   --cyan-mist: #89FFF0;
   --holographic-silver: #D9E3F2;
   --snow-white: #F9FAFB;
-  --slate-gray: #7B7E8D;
+  --slate-gray: #9CA3AF;
+  /* Lighter for WCAG contrast compliance */
 
   /* Cyber Fade Gradient */
   --cyber-fade-start: #FF3E5C;

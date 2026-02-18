@@ -20,6 +20,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
             <Spline
                 scene={scene}
                 className={className}
+                title="3D Interactive Cyber Avatar"
             />
         </Suspense>
     )

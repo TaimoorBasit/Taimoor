@@ -85,13 +85,21 @@ export function TheProcess() {
                 >
 
                     {/* Connecting Line (Desktop) */}
-                    <motion.div
-                        className="hidden md:block absolute top-[60px] left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-transparent via-electric-coral/30 to-transparent"
-                        initial={{ scaleX: 0, originX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, ease: "easeInOut" }}
-                    />
+                    {/* Connecting Line (Desktop) */}
+                    <div className="hidden md:block absolute top-[48px] left-[0] right-[0] h-[2px] bg-white/5 overflow-hidden z-0">
+                        <motion.div
+                            className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-r from-transparent via-electric-coral to-transparent w-[50%] opacity-70 blur-[3px]"
+                            animate={{
+                                x: ["-100%", "250%"]
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "linear",
+                                repeatDelay: 0.5
+                            }}
+                        />
+                    </div>
 
                     {steps.map((step, index) => (
                         <motion.div

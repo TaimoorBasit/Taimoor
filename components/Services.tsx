@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import {
   SiNextdotjs, SiShopify, SiGoogleanalytics,
   SiN8N, SiGooglemaps, SiUnrealengine
@@ -193,7 +194,14 @@ export function Services() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <Sparkles size={20} />
+            <div className="w-5 h-5 relative">
+              <Image
+                src="/favicon/android-chrome-192x192.png"
+                alt="Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
             Start a Project
             <ArrowRight size={20} />
           </motion.a>

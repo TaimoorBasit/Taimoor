@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Send, Zap, Sparkles, Code, ExternalLink, Calendar, ArrowRight } from 'lucide-react';
+import { Send, Handshake, Sparkles, Code, ExternalLink, Calendar, ArrowRight } from 'lucide-react';
 import { FaEnvelope, FaPhone, FaLocationDot, FaWhatsapp } from 'react-icons/fa6';
 import { SiLinkedin, SiInstagram } from 'react-icons/si';
 import { toast } from 'sonner';
@@ -153,10 +153,12 @@ function CyberInput({
 }
 
 const budgetOptions = [
-  "Under $1k",
-  "$1k - $5k",
-  "$5k - $10k",
-  "$10k+",
+  "$250 - $500",
+  "$500 - $1000",
+  "$1000 - $2500",
+  "$2500 - $5000",
+  "$5000+",
+  "Custom Amount",
 ];
 
 export function Contact() {
@@ -166,6 +168,7 @@ export function Contact() {
     phone: '',
     company: '',
     budget: '',
+    customBudget: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -184,7 +187,7 @@ export function Contact() {
 *Email:* ${formData.email}
 *Phone:* ${formData.phone || 'N/A'}
 *Company:* ${formData.company || 'N/A'}
-*Budget:* ${formData.budget}
+*Budget:* ${formData.budget === 'Custom Amount' ? `${formData.budget} (${formData.customBudget})` : formData.budget}
 *Message:*
 ${formData.message}`;
 
@@ -194,7 +197,7 @@ ${formData.message}`;
     window.open(whatsappUrl, '_blank');
 
     toast.success('Redirecting to WhatsApp...');
-    setFormData({ name: '', email: '', phone: '', company: '', budget: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', company: '', budget: '', customBudget: '', message: '' });
     setIsSubmitting(false);
   };
 
@@ -226,19 +229,25 @@ ${formData.message}`;
               I only work with clients who are serious about growth. If you&apos;re ready to build high-performance infrastructure, let&apos;s talk.
             </p>
 
-            <div className="mb-12 p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-electric-coral/10 text-electric-coral">
-                  <Zap size={20} />
+            <motion.div
+              className="mb-12 p-6 rounded-2xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 backdrop-blur-md relative overflow-hidden group"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-electric-coral/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="flex items-start gap-5 relative z-10">
+                <div className="flex-shrink-0 p-3 rounded-xl bg-gradient-to-br from-electric-coral/20 to-electric-coral/5 border border-electric-coral/20 text-electric-coral shadow-[0_0_15px_-5px_var(--electric-coral)]">
+                  <Handshake size={24} strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1">Direct Partnership</h4>
+                  <h4 className="text-lg font-bold text-white mb-2 group-hover:text-electric-coral transition-colors">Direct Partner</h4>
                   <p className="text-slate-400 text-sm leading-relaxed">
-                    You get me—not an account manager or a junior dev. No agency fluff, just direct access and high-level execution.
+                    Work directly with me—the expert building your project. No middlemen, no delays, just clear communication and exceptional results.
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             <div className="space-y-8 mb-12">
               {contactInfo.map((info) => (
@@ -355,6 +364,22 @@ ${formData.message}`;
                     <option key={opt} value={opt} className="bg-obsidian-black text-white">{opt}</option>
                   ))}
                 </select>
+                {formData.budget === 'Custom Amount' && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                  >
+                    <input
+                      type="text"
+                      name="customBudget"
+                      value={formData.customBudget}
+                      onChange={handleChange}
+                      placeholder="Enter specific amount (e.g. $7,500)"
+                      className="w-full mt-2 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-electric-coral focus:ring-1 focus:ring-electric-coral outline-none transition-all placeholder:text-slate-600"
+                    />
+                  </motion.div>
+                )}
               </div>
 
               <div className="space-y-2">

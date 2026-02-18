@@ -9,19 +9,19 @@ const About = dynamic(() => import('../components/About').then(mod => ({ default
 });
 
 const Skills = dynamic(() => import('../components/Skills').then(mod => ({ default: mod.Skills })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Projects = dynamic(() => import('../components/Projects').then(mod => ({ default: mod.Projects })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Tools = dynamic(() => import('../components/Tools').then(mod => ({ default: mod.Tools })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Testimonials = dynamic(() => import('../components/Testimonials').then(mod => ({ default: mod.Testimonials })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Services = dynamic(() => import('../components/Services').then(mod => ({ default: mod.Services })), {
@@ -29,7 +29,7 @@ const Services = dynamic(() => import('../components/Services').then(mod => ({ d
 });
 
 const Blog = dynamic(() => import('../components/Blog').then(mod => ({ default: mod.Blog })), {
-  ssr: true,
+  ssr: false,
 });
 
 const TheProcess = dynamic(() => import('../components/sections/TheProcess').then(mod => ({ default: mod.TheProcess })), {
@@ -37,11 +37,11 @@ const TheProcess = dynamic(() => import('../components/sections/TheProcess').the
 });
 
 const FAQ = dynamic(() => import('../components/sections/FAQ').then(mod => ({ default: mod.FAQ })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Contact = dynamic(() => import('../components/Contact').then(mod => ({ default: mod.Contact })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Footer = dynamic(() => import('../components/Footer').then(mod => ({ default: mod.Footer })), {
@@ -49,7 +49,7 @@ const Footer = dynamic(() => import('../components/Footer').then(mod => ({ defau
 });
 
 const WebFindLeadShowcase = dynamic(() => import('../components/sections/WebFindLeadShowcase').then(mod => ({ default: mod.WebFindLeadShowcase })), {
-  ssr: true,
+  ssr: false,
 });
 
 export default function Home() {

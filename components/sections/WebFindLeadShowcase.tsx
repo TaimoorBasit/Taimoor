@@ -139,7 +139,7 @@ export function WebFindLeadShowcase() {
                                     fill
                                     className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                                     sizes="(max-width: 1024px) 100vw, 50vw"
-                                    priority
+                                    unoptimized
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-tr from-electric-coral/5 to-transparent pointer-events-none" aria-hidden="true" />
                             </div>

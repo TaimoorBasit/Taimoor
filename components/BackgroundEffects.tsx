@@ -8,6 +8,10 @@ export function BackgroundEffects() {
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
+    // Determine if it's a mobile device to skip mouse tracking
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) return;
+
     const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
       mouseX.set(clientX);
       mouseY.set(clientY);
@@ -22,14 +26,15 @@ export function BackgroundEffects() {
       {/* 
         PREMIUM UPGRADE: Mouse-following gradient mesh 
         Uses motion values for performant updates without re-renders 
+        Hidden on mobile to save performance
       */}
       <motion.div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-20 hidden md:block"
         style={{
           background: useMotionTemplate`
             radial-gradient(
-              600px circle at ${mouseX}px ${mouseY}px,
-              rgba(255, 62, 92, 0.15),
+              450px circle at ${mouseX}px ${mouseY}px,
+              rgba(255, 62, 92, 0.12),
               transparent 80%
             )
           `,

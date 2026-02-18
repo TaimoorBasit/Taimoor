@@ -71,7 +71,7 @@ function CyberTechIcon({ tech, index }: { tech: typeof techIcons[0]; index: numb
 // Transcendent carousel with holographic effects
 function TranscendentCarousel() {
   const [isPaused, setIsPaused] = useState(false);
-  const duplicatedIcons = [...techIcons, ...techIcons, ...techIcons];
+  const duplicatedIcons = [...techIcons, ...techIcons];
 
   return (
     <div

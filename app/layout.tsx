@@ -1,14 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono, Orbitron, Space_Grotesk } from 'next/font/google'
+import { JetBrains_Mono, Orbitron, Space_Grotesk } from 'next/font/google'
 import { Toaster } from 'sonner'
 import '../styles/globals.css'
 import { BackgroundEffects } from '@/components/BackgroundEffects'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
+// Removed Inter to save performance as Space Grotesk is the primary font
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -112,11 +108,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${jetbrainsMono.variable} ${orbitron.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://prod.spline.design" />
       </head>
-      <body className="min-h-screen bg-background text-foreground font-inter antialiased selection:bg-electric-coral/30 selection:text-white" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-electric-coral/30 selection:text-white" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

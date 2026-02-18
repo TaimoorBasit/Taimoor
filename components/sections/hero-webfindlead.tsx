@@ -145,10 +145,11 @@ export function HeroWebFindLead() {
                                     e.preventDefault();
                                     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                                 }}
+                                aria-label="Scroll to view my selected work projects"
                             >
                                 <span className="relative z-10 flex items-center justify-center gap-2">
                                     View Selected Work
-                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </span>
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                             </motion.button>
@@ -161,8 +162,9 @@ export function HeroWebFindLead() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-4 rounded-lg font-semibold text-lg text-white border border-white/10 hover:border-electric-coral/50 hover:bg-white/[0.05] transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 backdrop-blur-sm group cursor-pointer"
+                                aria-label="Call me at +1 (972) 688-7170"
                             >
-                                <Phone size={20} className="text-electric-coral group-hover:rotate-12 transition-transform" />
+                                <Phone size={20} className="text-electric-coral group-hover:rotate-12 transition-transform" aria-hidden="true" />
                                 <span>+1 (972) 688-7170</span>
                             </motion.a>
                         </div>

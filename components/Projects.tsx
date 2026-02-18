@@ -209,8 +209,8 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
           {/* Featured Badge */}
           {('featured' in project && project.featured) && (
             <div className="absolute top-4 right-4 z-20">
-              <div className="px-3 py-1 rounded-full bg-electric-coral text-white text-[10px] font-bold uppercase tracking-tighter shadow-lg flex items-center gap-1 animate-pulse">
-                <Sparkles size={10} />
+              <div className="px-3 py-1 rounded-full bg-electric-coral text-white text-[10px] font-bold uppercase tracking-tighter shadow-lg flex items-center gap-1 animate-pulse" role="status">
+                <Sparkles size={10} aria-hidden="true" />
                 Featured Tool
               </div>
             </div>
@@ -229,7 +229,7 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
             <div className="text-xs font-bold text-electric-coral tracking-widest uppercase">
               {project.category}
             </div>
-            <div className="p-2 rounded-full bg-white/5 border border-white/10 text-xl">
+            <div className="p-2 rounded-full bg-white/5 border border-white/10 text-xl" aria-hidden="true">
               {project.logo}
             </div>
           </div>
@@ -263,9 +263,10 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-white text-obsidian-black font-bold text-sm hover:bg-electric-coral hover:text-white transition-all duration-300 shadow-[0_0_15px_-5px_rgba(255,255,255,0.3)] w-full"
+            aria-label={`View live site for ${project.title}`}
           >
             View Site
-            <ExternalLink size={14} />
+            <ExternalLink size={14} aria-hidden="true" />
           </a>
         </div>
       </div>

@@ -91,7 +91,7 @@ export function About() {
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 shadow-2xl">
                 <Image
                   src="/My.jpg"
-                  alt="Taimoor Awan"
+                  alt="Taimoor Awan - Full Stack Engineer and AI Solutions Architect"
                   fill
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 400px"

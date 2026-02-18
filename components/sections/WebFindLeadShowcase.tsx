@@ -44,8 +44,10 @@ export function WebFindLeadShowcase() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-electric-coral/30 bg-electric-coral/10 text-electric-coral text-[10px] font-bold uppercase tracking-widest"
+                            role="status"
+                            aria-label="Flagship SaaS Product Status"
                         >
-                            <Zap size={12} />
+                            <Zap size={12} aria-hidden="true" />
                             Flagship SaaS Product
                         </motion.div>
 
@@ -79,11 +81,11 @@ export function WebFindLeadShowcase() {
                                     className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-electric-coral/30 transition-colors group"
                                 >
                                     <div className="shrink-0 p-2 rounded-lg bg-electric-coral/10 text-electric-coral group-hover:scale-110 transition-transform">
-                                        <feature.icon size={20} />
+                                        <feature.icon size={20} aria-hidden="true" />
                                     </div>
                                     <div>
                                         <h4 className="text-white font-bold text-sm mb-1">{feature.title}</h4>
-                                        <p className="text-slate-500 text-xs leading-relaxed">{feature.description}</p>
+                                        <p className="text-slate-400 text-xs leading-relaxed">{feature.description}</p>
                                     </div>
                                 </motion.div>
                             ))}
@@ -99,9 +101,11 @@ export function WebFindLeadShowcase() {
                             <a
                                 href="https://webfindlead.vercel.app"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="cyber-button px-8 py-4 flex items-center gap-2 font-bold uppercase tracking-wider text-sm"
+                                aria-label="Launch WebFindLead Tool (opens in new tab)"
                             >
-                                Launch Tool <ExternalLink size={18} />
+                                Launch Tool <ExternalLink size={18} aria-hidden="true" />
                             </a>
                             <div className="flex items-center gap-3 px-6 py-4 rounded-lg bg-white/5 border border-white/10 text-slate-400 text-sm font-medium">
                                 <Users size={18} className="text-cyan-mist" />
@@ -131,7 +135,7 @@ export function WebFindLeadShowcase() {
                             <div className="relative w-full h-[calc(100%-32px)]">
                                 <Image
                                     src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwebfindlead.vercel.app%3Fv%3D1?w=1024"
-                                    alt="WebFindLead Live Preview"
+                                    alt="Official dashboard preview of WebFindLead showing the local business scanning interface"
                                     fill
                                     className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                                     sizes="(max-width: 1024px) 100vw, 50vw"

@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState, useRef, memo } from 'react';
-import { ExternalLink, Github, X, Zap, Code, Sparkles, MapPin, Gamepad2, GraduationCap, ArrowRight } from 'lucide-react';
+import { ExternalLink, X, Zap, Code, Sparkles, MapPin, Gamepad2, GraduationCap, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import {
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiTypescript,
@@ -229,25 +229,15 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
         </div>
 
         {/* Actions - Premium Buttons */}
-        <div className="mt-auto grid grid-cols-2 gap-4">
+        <div className="mt-auto">
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-white text-obsidian-black font-bold text-sm hover:bg-electric-coral hover:text-white transition-all duration-300 shadow-[0_0_15px_-5px_rgba(255,255,255,0.3)]"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-white text-obsidian-black font-bold text-sm hover:bg-electric-coral hover:text-white transition-all duration-300 shadow-[0_0_15px_-5px_rgba(255,255,255,0.3)] w-full"
           >
-            Live Demo
+            View Site
             <ExternalLink size={14} />
-          </a>
-
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-white/10 text-white font-medium text-sm hover:bg-white/10 transition-all duration-300"
-          >
-            Source Code
-            <Github size={14} />
           </a>
         </div>
       </div>

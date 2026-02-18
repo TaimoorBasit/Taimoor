@@ -128,7 +128,7 @@ export function HeroWebFindLead() {
                                 transition={{ delay: 0.7, duration: 1 }}
                                 className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light pt-6 border-l-2 border-electric-coral/50 pl-6 mt-6"
                             >
-                                Specializing in <span className="text-white font-medium">Enterprise SaaS</span>, <span className="text-white font-medium">AI Agents</span>, and <span className="text-white font-medium">High-Performance Infrastructure</span>. I build systems that scale revenue.
+                                Founder of <span className="text-white font-medium">WebFindLead</span> — a SaaS platform that automates local business lead generation for agencies and developers by identifying businesses without a digital presence.
                             </motion.p>
                         </div>
 

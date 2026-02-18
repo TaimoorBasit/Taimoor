@@ -31,11 +31,29 @@ const getTechIcon = (techName: string) => {
     case 'HTML5': return <SiHtml5 className="text-[#E34F26]" />;
     case 'Python': return <SiPython className="text-[#3776AB]" />;
     case 'Selenium': return <SiSelenium className="text-[#43B02A]" />;
+    case 'Prisma': return <Zap className="text-[#2D3748]" size={14} />;
+    case 'MySQL': return <Code className="text-[#00758F]" size={14} />;
     default: return <Code size={14} className="text-slate-400" />;
   }
 };
 
 const projects = [
+  {
+    id: 0,
+    title: 'WebFindLead',
+    description: 'A professional lead generation platform that discovers local businesses lacking professional websites, providing freelancers with validated contact data and digital status reports.',
+    tech: ['Next.js', 'TypeScript', 'Prisma', 'MySQL', 'Tailwind CSS'],
+    image: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Fwebfindlead.vercel.app%3Fv%3D1?w=1024',
+    category: 'SaaS / B2B',
+    link: 'https://webfindlead.vercel.app',
+    github: '#',
+    logo: '🔍',
+    animatedIcon: '⚡',
+    gradient: 'var(--electric-coral)',
+    accent: 'var(--cyan-mist)',
+    client: 'Founding Product',
+    featured: true,
+  },
   {
     id: 1,
     title: 'Seven Koncepts',
@@ -186,7 +204,17 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            unoptimized={project.image.startsWith('http')}
           />
+          {/* Featured Badge */}
+          {('featured' in project && project.featured) && (
+            <div className="absolute top-4 right-4 z-20">
+              <div className="px-3 py-1 rounded-full bg-electric-coral text-white text-[10px] font-bold uppercase tracking-tighter shadow-lg flex items-center gap-1 animate-pulse">
+                <Sparkles size={10} />
+                Featured Tool
+              </div>
+            </div>
+          )}
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian-black/80 via-transparent to-transparent opacity-60" />
         </div>

@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 
 import { Header } from '../components/Header';
+import { LaunchBanner } from '../components/LaunchBanner';
 import { HeroWebFindLead as Hero } from '../components/sections/hero-webfindlead';
 
 const About = dynamic(() => import('../components/About').then(mod => ({ default: mod.About })), {
@@ -47,6 +48,10 @@ const Footer = dynamic(() => import('../components/Footer').then(mod => ({ defau
   ssr: true,
 });
 
+const WebFindLeadShowcase = dynamic(() => import('../components/sections/WebFindLeadShowcase').then(mod => ({ default: mod.WebFindLeadShowcase })), {
+  ssr: true,
+});
+
 export default function Home() {
 
   return (
@@ -58,6 +63,7 @@ export default function Home() {
           <About />
           <Services />
           <TheProcess />
+          <WebFindLeadShowcase />
           <Projects />
           <Skills />
           <Testimonials />

@@ -127,7 +127,7 @@ export function About() {
                   <strong className="text-white font-medium">My Approach:</strong> With a background in <span className="text-electric-coral">7-figure E-commerce</span> scaling and a Computer Science degree, I don&apos;t just build features—I architect growth engines.
                 </p>
                 <p>
-                  From <strong>University Dashboards</strong> to <strong>Autonomous AI Agents</strong> and <strong className="text-cyan-mist">AAA Unreal Engine implementations</strong>, I merge deep technical engineering with aggressive business strategy.
+                  From <strong>University Dashboards</strong> to <strong className="text-cyan-mist">WebFindLead</strong>—my custom lead generation platform for finding invisible business opportunities—I merge technical engineering with practical business solutions.
                 </p>
               </div>
             </div>

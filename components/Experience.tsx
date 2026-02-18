@@ -5,10 +5,17 @@ import { Briefcase, Calendar, GraduationCap, Award } from 'lucide-react';
 
 const experiences = [
     {
+        title: "Founder & Lead Architect",
+        company: "WebFindLead (SaaS)",
+        period: "2024 - Present",
+        description: "Built an autonomous lead generation ecosystem using Next.js 14, TiDB Cloud, and SerpApi. Engineered real-time scanning infrastructure that identifies local businesses without digital presence, reducing prospecting time by 90%.",
+        type: "work"
+    },
+    {
         title: "Senior Full Stack Engineer",
         company: "Freelance & Agency",
         period: "2023 - Present",
-        description: "Built full-fledged university dashboard systems and developed custom freelancer tools for automated Google Maps lead generation (filtering by business & city). Architected AI-powered chatbot solutions using n8n for automated appointment setting.",
+        description: "Built full-fledged university dashboard systems and developed custom automated Google Maps lead generation tools. Architected AI-powered chatbot solutions using n8n for automated appointment setting.",
         type: "work"
     },
     {

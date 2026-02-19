@@ -81,8 +81,6 @@ export function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isMenuOpen}
             >
               <div className="relative w-5 h-5 flex items-center justify-center">
                 <AnimatePresence mode="wait">
@@ -132,7 +130,6 @@ export function Header() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => scrollToSection(e, '#contact')}
-              aria-label="Navigate to contact section to get in touch"
             >
               Get in Touch
             </motion.a>

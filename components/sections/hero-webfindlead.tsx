@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Sparkles, ArrowRight, MousePointer2, Phone } from "lucide-react";
@@ -39,7 +39,6 @@ const RotatingWords = () => {
                 exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
                 className="text-electric-coral inline-block py-1"
-                aria-live="polite"
             >
                 {words[index]}
             </motion.span>
@@ -48,42 +47,8 @@ const RotatingWords = () => {
 };
 
 const DeferredSpline = () => {
-    const [shouldLoad, setShouldLoad] = useState(false);
-    const [isInView, setIsInView] = useState(false);
-    const splineRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsInView(true);
-                    // Defer loading slightly after intersection to avoid initial stutter
-                    const timer = setTimeout(() => setShouldLoad(true), 1000);
-                    return () => clearTimeout(timer);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (splineRef.current) {
-            observer.observe(splineRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, []);
-
-    if (!shouldLoad) return (
-        <div ref={splineRef} className="flex items-center justify-center w-full h-full relative">
-            {/* Static high-end LCP Placeholder */}
-            <div className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full bg-gradient-to-br from-electric-coral/20 to-cyan-mist/20 blur-3xl animate-pulse" />
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full border border-white/10 bg-white/5 backdrop-blur-3xl flex items-center justify-center shadow-[0_0_50px_-10px_rgba(255,62,92,0.2)]">
-                <div className="w-8 h-8 rounded-full border-2 border-cyan-mist/30 border-t-cyan-mist animate-spin" aria-hidden="true" />
-            </div>
-        </div>
-    );
-
     return (
-        <div ref={splineRef} className="w-full h-full relative">
+        <div className="w-full h-full relative">
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}

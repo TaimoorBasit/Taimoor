@@ -101,7 +101,7 @@ function CyberTestimonialCard({ testimonial, index }: { testimonial: typeof test
           </div>
           <div>
             <div className="font-bold text-white group-hover:text-electric-coral transition-colors">{testimonial.name}</div>
-            <div className="text-sm text-slate-300">{testimonial.role}, {testimonial.company}</div>
+            <div className="text-sm text-slate-500">{testimonial.role}, {testimonial.company}</div>
           </div>
         </div>
 
@@ -128,7 +128,7 @@ export function Testimonials() {
             Trusted by <span className="cyber-gradient-text">Industry Leaders</span>
           </motion.h2>
           <motion.p
-            className="text-lg text-slate-200 max-w-2xl mx-auto"
+            className="text-lg text-slate-400 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

@@ -41,9 +41,8 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-10 h-10 rounded-lg text-white transition-all duration-300 hover:scale-105 hover:opacity-90 border border-white/10 hover:border-electric-coral/50 bg-white/5"
-                  aria-label={`Visit my ${social.label} profile`}
                 >
-                  <social.icon size={20} aria-hidden="true" />
+                  <social.icon size={20} />
                 </a>
               ))}
             </motion.div>

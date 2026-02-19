@@ -56,7 +56,7 @@ export const TechMarquee = ({
                     pauseOnHover && "hover:[animation-play-state:paused]"
                 )}
             >
-                {[...techStack, ...techStack].map((tech, idx) => (
+                {[...techStack, ...techStack, ...techStack].map((tech, idx) => (
                     <li
                         className="w-[100px] h-[80px] max-w-full relative flex flex-col items-center justify-center flex-shrink-0 transition-transform duration-300 hover:scale-110"
                         key={`${tech.name}-${idx}`}

@@ -110,8 +110,8 @@ function CyberServiceCard({ service, index }: { service: typeof services[0]; ind
             <div className="h-px w-full bg-white/5" />
             <ul className="space-y-3">
               {service.features.map((feature, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-slate-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-electric-coral/50 group-hover:bg-electric-coral transition-colors" aria-hidden="true" />
+                <li key={i} className="flex items-center gap-3 text-sm text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-electric-coral/50 group-hover:bg-electric-coral transition-colors" />
                   {feature}
                 </li>
               ))}

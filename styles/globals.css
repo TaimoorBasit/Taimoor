@@ -9,8 +9,7 @@
   --cyan-mist: #89FFF0;
   --holographic-silver: #D9E3F2;
   --snow-white: #F9FAFB;
-  --slate-gray: #9CA3AF;
-  /* Lighter for WCAG contrast compliance */
+  --slate-gray: #7B7E8D;
 
   /* Cyber Fade Gradient */
   --cyber-fade-start: #FF3E5C;
@@ -100,7 +99,10 @@ html {
 
 .motion-element,
 .cyber-glass,
-.cyber-button {
+.cyber-button,
+[data-framer-motion],
+[class*="motion"],
+section {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
@@ -162,15 +164,18 @@ motion.button {
     border-color: rgba(217, 227, 242, 0.2);
     background: rgba(217, 227, 242, 0.08);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    will-change: transform;
   }
 
   /* Neon Glow Effects */
   .neon-glow {
     box-shadow: 0 0 15px var(--electric-coral), 0 0 30px var(--electric-coral);
+    will-change: box-shadow;
   }
 
   .neon-glow-cyan {
     box-shadow: 0 0 15px var(--cyan-mist), 0 0 30px var(--cyan-mist);
+    will-change: box-shadow;
   }
 
   /* Cyber Gradient */

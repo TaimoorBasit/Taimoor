@@ -61,7 +61,7 @@ export function Experience() {
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
                         Professional <span className="cyber-gradient-text">Journey</span>
                     </h2>
-                    <p className="text-slate-200 max-w-2xl mx-auto">
+                    <p className="text-slate-gray max-w-2xl mx-auto">
                         A timeline of my growth, expertise, and professional contributions to the tech world.
                     </p>
                 </motion.div>
@@ -108,7 +108,7 @@ export function Experience() {
                                             <Calendar size={14} />
                                             {exp.period}
                                         </div>
-                                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+                                        <p className="text-sm sm:text-base text-slate-gray leading-relaxed">
                                             {exp.description}
                                         </p>
                                     </div>

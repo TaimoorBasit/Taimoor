@@ -12,6 +12,13 @@ const experiences = [
         type: "work"
     },
     {
+        title: "Founder & Product Lead",
+        company: "CustConnect (University Hub)",
+        period: "2024 - Present",
+        description: "Designed a centralized full-stack ecosystem for campus life, serving 15+ modules including real-time social networking and logistics. Optimized for students as a superior alternative to traditional faculty portals.",
+        type: "work"
+    },
+    {
         title: "Senior Full Stack Engineer",
         company: "Freelance & Agency",
         period: "2023 - Present",

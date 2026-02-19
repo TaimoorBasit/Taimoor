@@ -56,6 +56,22 @@ const projects = [
   },
   {
     id: 1,
+    title: 'CustConnect',
+    description: 'A full-stack campus ecosystem serving 15+ modules. Engineered with real-time Socket.io notifications, distributed TiDB Cloud database, and secure JWT/OTP authentication workflows.',
+    tech: ['Next.js', 'Node.js', 'Express', 'TiDB Cloud', 'Prisma', 'Socket.io'],
+    image: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Fcustconnect.vercel.app%3Fv%3D1?w=1024',
+    category: 'Full Stack / EdTech',
+    link: 'https://custconnect.vercel.app',
+    github: '#',
+    logo: '🎓',
+    animatedIcon: '✨',
+    gradient: 'var(--cyan-mist)',
+    accent: 'var(--electric-coral)',
+    client: 'Founding Product',
+    featured: true,
+  },
+  {
+    id: 2,
     title: 'Seven Koncepts',
     description: 'An exceptional corporate website that perfectly represents the brand, featuring a modern design and seamless user experience.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
@@ -70,7 +86,7 @@ const projects = [
     client: 'Mir Shehryar Khan',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Elysia Distribution',
     description: 'A beautiful, functional business website that transforms a vision into reality, streamlining operations and digital presence.',
     tech: ['WordPress', 'PHP', 'SCSS', 'JavaScript'],
@@ -85,7 +101,7 @@ const projects = [
     client: 'Syed Qammar',
   },
   {
-    id: 3,
+    id: 4,
     title: 'DellNux Electronics',
     description: 'A stunning Shopify e-commerce store optimized for sales and mobile users, delivering a significant boost in revenue.',
     tech: ['Shopify', 'Liquid', 'JavaScript', 'CSS3'],
@@ -100,7 +116,7 @@ const projects = [
     client: 'Muhammad Bilal',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Prime Seller Store',
     description: 'A robust Shopify store with perfect functionality and modern design, creating an outstanding shopping experience for customers.',
     tech: ['Shopify', 'Liquid', 'Theme Dev', 'SEO'],
@@ -115,7 +131,7 @@ const projects = [
     client: 'Muhammad Kawish',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Imya UK Fashion',
     description: 'A beautiful WordPress e-commerce site that is fast, responsive, and user-friendly, perfectly matching the brand identity.',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'MySQL'],
@@ -130,7 +146,7 @@ const projects = [
     client: 'Imaya',
   },
   {
-    id: 6,
+    id: 7,
     title: 'Eternal Aspirants',
     description: 'Professional WordPress development delivering a clean, modern company website that meets exact business requirements. ',
     tech: ['WordPress', 'PHP', 'JavaScript', 'CSS3'],
@@ -145,7 +161,7 @@ const projects = [
     client: 'Company Client',
   },
   {
-    id: 7,
+    id: 8,
     title: 'Fast Food Express',
     description: 'An ultra-fast ordering system designed for volume and speed, handling real-time traffic with zero lag.',
     tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
@@ -160,7 +176,7 @@ const projects = [
     client: 'Personal Project',
   },
   {
-    id: 8,
+    id: 9,
     title: 'Moan Sale Market',
     description: 'A feature-rich e-commerce infrastructure with secure Stripe integration and a smooth, intuitive checkout experience.',
     tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],

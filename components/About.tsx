@@ -11,7 +11,7 @@ import { useInView, useSpring, useTransform } from 'framer-motion';
 const stats = [
   { icon: FaLayerGroup, label: 'Successful Projects', value: 27, suffix: '', color: '#61DAFB' },
   { icon: FaCheckDouble, label: 'Active Clients', value: 12, suffix: '+', color: '#777BB4' },
-  { icon: FaClock, label: 'Years Experience', value: 3.5, suffix: '', color: '#F7DF1E', decimals: 1 },
+  { icon: FaClock, label: 'Years Experience', value: 3.5, suffix: '+', color: '#F7DF1E', decimals: 1 },
   { icon: FaBullseye, label: 'Delivery Rate', value: 100, suffix: '%', color: '#E34F26' },
 ];
 

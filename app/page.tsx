@@ -52,6 +52,10 @@ const WebFindLeadShowcase = dynamic(() => import('../components/sections/WebFind
   ssr: true,
 });
 
+const CustConnectShowcase = dynamic(() => import('../components/sections/CustConnectShowcase').then(mod => ({ default: mod.CustConnectShowcase })), {
+  ssr: true,
+});
+
 export default function Home() {
 
   return (
@@ -64,6 +68,7 @@ export default function Home() {
           <Services />
           <TheProcess />
           <WebFindLeadShowcase />
+          <CustConnectShowcase />
           <Projects />
           <Skills />
           <Testimonials />

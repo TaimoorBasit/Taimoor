@@ -10,23 +10,10 @@ const inter = Inter({
   display: 'swap',
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-})
-
 const orbitron = Orbitron({
   subsets: ['latin'],
   variable: '--font-orbitron',
   weight: ['400', '700', '900'],
-  display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  weight: ['300', '400', '500', '600'],
   display: 'swap',
 })
 
@@ -112,11 +99,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${orbitron.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://prod.spline.design" />
       </head>
-      <body className="min-h-screen bg-background text-foreground font-inter antialiased selection:bg-electric-coral/30 selection:text-white" suppressHydrationWarning>
+      <body className={`${inter.variable} ${orbitron.variable} font-sans bg-obsidian-black text-snow-white antialiased selection:bg-electric-coral/30 selection:text-white`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

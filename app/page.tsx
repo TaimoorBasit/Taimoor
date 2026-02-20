@@ -17,19 +17,11 @@ const Projects = dynamic(() => import('../components/Projects').then(mod => ({ d
   ssr: true,
 });
 
-const Tools = dynamic(() => import('../components/Tools').then(mod => ({ default: mod.Tools })), {
-  ssr: true,
-});
-
 const Testimonials = dynamic(() => import('../components/Testimonials').then(mod => ({ default: mod.Testimonials })), {
   ssr: true,
 });
 
 const Services = dynamic(() => import('../components/Services').then(mod => ({ default: mod.Services })), {
-  ssr: true,
-});
-
-const Blog = dynamic(() => import('../components/Blog').then(mod => ({ default: mod.Blog })), {
   ssr: true,
 });
 
@@ -49,11 +41,7 @@ const Footer = dynamic(() => import('../components/Footer').then(mod => ({ defau
   ssr: true,
 });
 
-const WebFindLeadShowcase = dynamic(() => import('../components/sections/WebFindLeadShowcase').then(mod => ({ default: mod.WebFindLeadShowcase })), {
-  ssr: true,
-});
-
-const CustConnectShowcase = dynamic(() => import('../components/sections/CustConnectShowcase').then(mod => ({ default: mod.CustConnectShowcase })), {
+const FlagshipProducts = dynamic(() => import('../components/sections/FlagshipProducts').then(mod => ({ default: mod.FlagshipProducts })), {
   ssr: true,
 });
 
@@ -68,8 +56,7 @@ export default function Home() {
           <About />
           <Services />
           <TheProcess />
-          <WebFindLeadShowcase />
-          <CustConnectShowcase />
+          <FlagshipProducts />
           <Projects />
           <Skills />
           <Testimonials />

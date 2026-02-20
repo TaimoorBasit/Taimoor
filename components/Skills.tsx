@@ -27,30 +27,21 @@ const techIcons = [
 
 // Holographic tech icon with cyber effects
 function CyberTechIcon({ tech, index }: { tech: typeof techIcons[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       className="relative group"
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.05, duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      transition={{ delay: index * 0.02, duration: 0.3 }}
       whileHover={{
-        scale: 1.15,
-        y: -12,
+        scale: 1.1,
+        y: -5,
       }}
     >
       {/* Holographic Container */}
       <div
-        className="relative p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 min-w-[120px] sm:min-w-[140px] h-[120px] sm:h-[140px] mx-2 flex flex-col items-center justify-center transition-all duration-300"
-        style={{
-          borderColor: isHovered ? tech.color : 'rgba(255, 255, 255, 0.1)',
-          boxShadow: isHovered ? `0 0 20px -5px ${tech.color}` : 'none'
-        }}
+        className="relative p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 min-w-[120px] sm:min-w-[140px] h-[120px] sm:h-[140px] mx-2 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-white/[0.08] group-hover:border-white/20"
       >
-
         {/* Icon */}
         <div className="text-4xl sm:text-5xl mb-2 relative z-10" style={{ color: tech.color }}>
           {tech.icon}
@@ -58,8 +49,7 @@ function CyberTechIcon({ tech, index }: { tech: typeof techIcons[0]; index: numb
 
         {/* Tech Name */}
         <span
-          className="text-xs sm:text-sm font-medium text-center relative z-10"
-          style={{ color: 'var(--snow-white)' }}
+          className="text-xs sm:text-sm font-medium text-center relative z-10 text-snow-white"
         >
           {tech.name}
         </span>
@@ -71,7 +61,7 @@ function CyberTechIcon({ tech, index }: { tech: typeof techIcons[0]; index: numb
 // Transcendent carousel with holographic effects
 function TranscendentCarousel() {
   const [isPaused, setIsPaused] = useState(false);
-  const duplicatedIcons = [...techIcons, ...techIcons, ...techIcons];
+  const duplicatedIcons = [...techIcons, ...techIcons];
 
   return (
     <div
@@ -83,30 +73,13 @@ function TranscendentCarousel() {
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-obsidian-black via-obsidian-black/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-obsidian-black via-obsidian-black/80 to-transparent z-10 pointer-events-none" />
 
-      {/* Cyber Scan Lines */}
       <motion.div
-        className="absolute top-0 left-0 w-full h-px z-20"
-        style={{
-          background: 'linear-gradient(90deg, transparent, var(--electric-coral), var(--cyan-mist), var(--electric-coral), transparent)',
-        }}
-        animate={{
-          x: ['-100%', '100%'],
-          opacity: [0, 1, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="flex"
+        className="flex will-change-transform"
         animate={{
           x: [0, -150 * techIcons.length]
         }}
         transition={{
-          duration: 35,
+          duration: 45,
           ease: 'linear',
           repeat: Infinity,
           repeatType: 'loop'

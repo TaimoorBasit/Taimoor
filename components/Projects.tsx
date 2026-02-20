@@ -196,13 +196,13 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
   return (
     <motion.div
       className="group relative flex flex-col h-full bg-[#0C0C0D] border border-white/10 rounded-2xl overflow-hidden hover:border-electric-coral/50 transition-all duration-500 hover:shadow-[0_0_30px_-10px_rgba(255,62,92,0.2)]"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{
-        delay: index * 0.1,
-        duration: 0.5,
-        ease: [0.4, 0.0, 0.2, 1],
+        delay: index * 0.05,
+        duration: 0.3,
+        ease: "easeOut",
       }}
     >
       {/* Mockup / Browser Frame */}
@@ -216,11 +216,12 @@ const CyberProjectCard = memo(function CyberProjectCard({ project, index }: { pr
         <div className="relative aspect-[16/10] overflow-hidden group-hover:opacity-90 transition-opacity">
           <Image
             src={project.image}
-            alt={project.title}
+            alt={`Screenshot of project ${project.title} - ${project.category}`}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             unoptimized={project.image.startsWith('http')}
+            loading="lazy"
           />
           {/* Featured Badge */}
           {('featured' in project && project.featured) && (

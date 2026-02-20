@@ -13,6 +13,9 @@ export function Header() {
   const lastScrollY = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
+    const diff = Math.abs(latest - lastScrollY.current);
+    if (diff < 10 && latest > 0) return; // Ignore small scroll jitters
+
     const direction = latest > lastScrollY.current ? "down" : "up";
 
     // Scrolled state for styling
@@ -20,9 +23,9 @@ export function Header() {
 
     // Visibility state for smart hide/show
     if (latest > 150 && direction === "down" && !isMenuOpen) {
-      setIsVisible(false);
+      if (isVisible) setIsVisible(false);
     } else {
-      setIsVisible(true);
+      if (!isVisible) setIsVisible(true);
     }
 
     lastScrollY.current = latest;

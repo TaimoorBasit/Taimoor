@@ -97,16 +97,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.motion-element,
+/* Cleaned up performance hints - avoided layer explosion */
 .cyber-glass,
-.cyber-button,
-[data-framer-motion],
-[class*="motion"],
-section {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.cyber-button {
+  will-change: transform, opacity;
 }
 
 body {

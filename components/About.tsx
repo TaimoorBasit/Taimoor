@@ -5,7 +5,7 @@ import { FaLayerGroup, FaCheckDouble, FaClock, FaBullseye } from 'react-icons/fa
 import { SiReact, SiJavascript, SiCss3 } from 'react-icons/si';
 import Image from 'next/image';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useInView, useSpring, useTransform } from 'framer-motion';
 
 const stats = [
@@ -16,24 +16,29 @@ const stats = [
 ];
 
 function AnimatedNumber({ value, decimals = 0 }: { value: number, decimals?: number }) {
+  const [displayValue, setDisplayValue] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px" });
-
-  const spring = useSpring(0, {
-    mass: 1,
-    stiffness: 100,
-    damping: 30,
-  });
-
-  const displayValue = useTransform(spring, (current) => current.toFixed(decimals));
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (isInView) {
-      spring.set(value);
+      let start = 0;
+      const duration = 2000;
+      const increment = value / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= value) {
+          setDisplayValue(value);
+          clearInterval(timer);
+        } else {
+          setDisplayValue(start);
+        }
+      }, 16);
+      return () => clearInterval(timer);
     }
-  }, [isInView, value, spring]);
+  }, [isInView, value]);
 
-  return <motion.span ref={ref}>{displayValue}</motion.span>;
+  return <motion.span ref={ref}>{displayValue.toFixed(decimals)}</motion.span>;
 }
 
 function StatCard({ stat, index }: { stat: typeof stats[0], index: number }) {

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Sparkles, ArrowRight, MousePointer2, Phone } from "lucide-react";
+import { Search, Sparkles, ArrowRight, MousePointer2, Phone, Zap } from "lucide-react";
 import { Spotlight } from "@/components/ui/spotlight";
 import { cn } from "@/lib/utils";
 import { TechMarquee } from "@/components/ui/tech-marquee";
@@ -47,16 +47,68 @@ const RotatingWords = () => {
 };
 
 const DeferredSpline = () => {
+    const [shouldLoad, setShouldLoad] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        // Detect mobile to save battery and performance
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        // Defer Spline loading
+        const timer = setTimeout(() => {
+            if (window.innerWidth >= 768) {
+                setShouldLoad(true);
+            }
+        }, 1500);
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('resize', checkMobile);
+        };
+    }, []);
+
+    if (isMobile) {
+        return (
+            <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/5 bg-white/[0.02] backdrop-blur-md flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-tr from-electric-coral/20 to-transparent opacity-30" />
+                <Zap className="text-electric-coral opacity-20" size={64} />
+            </div>
+        );
+    }
+
     return (
-        <div className="w-full h-full relative">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="w-full h-full"
-            >
-                <SplineSceneBasic />
-            </motion.div>
+        <div className="w-full h-full relative min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+                {!shouldLoad ? (
+                    <motion.div
+                        key="placeholder"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 flex items-center justify-center"
+                    >
+                        {/* High-quality static fallback for LCP & Performance */}
+                        <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/5 bg-white/[0.02] backdrop-blur-md flex items-center justify-center group">
+                            <Zap className="text-electric-coral animate-pulse opacity-20" size={64} />
+                            <div className="absolute inset-x-0 bottom-8 text-center">
+                                <span className="text-[10px] text-slate-500 font-mono tracking-widest uppercase animate-pulse">Initializing 3D Environment...</span>
+                            </div>
+                        </div>
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        key="spline"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8 }}
+                        className="w-full h-full"
+                    >
+                        <SplineSceneBasic />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
@@ -67,9 +119,9 @@ export function HeroWebFindLead() {
             id="home"
             className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-obsidian-black pt-24 sm:pt-32"
         >
-            {/* 1. Spotlight Effect - Ambient Premium Glow */}
-            <Spotlight className="-top-40 left-0 md:left-20 md:-top-20 z-10 opacity-50" fill="var(--electric-coral)" />
-            <Spotlight className="top-40 right-0 md:right-20 z-10 opacity-30" fill="var(--cyan-mist)" />
+            {/* Ambient Premium Glow - CSS Optimized */}
+            <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-electric-coral/10 blur-[120px] rounded-full pointer-events-none z-0" />
+            <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-cyan-mist/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
             <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex-grow flex flex-col justify-center">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -170,8 +222,7 @@ export function HeroWebFindLead() {
                         </div>
                     </div>
 
-                    {/* RIGHT SIDE: 3D SPLINE SCENE */}
-                    <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] w-full flex items-center justify-center order-1 lg:order-2 z-10 pointer-events-auto perspective-[1000px]">
+                    <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] w-full flex items-center justify-center order-1 lg:order-2 z-10 pointer-events-auto">
                         <motion.div
                             initial={{ opacity: 0, x: 50, rotateY: 10 }}
                             animate={{ opacity: 1, x: 0, rotateY: 0 }}

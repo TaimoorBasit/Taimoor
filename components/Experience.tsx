@@ -77,16 +77,29 @@ export function Experience() {
                     {/* Vertical Line */}
                     <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-px h-full bg-gradient-to-b from-electric-coral via-cyan-mist to-transparent hidden sm:block" />
 
-                    <div className="space-y-12">
+                    <motion.div
+                        className="space-y-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={{
+                            hidden: {},
+                            visible: {
+                                transition: {
+                                    staggerChildren: 0.1
+                                }
+                            }
+                        }}
+                    >
                         {experiences.map((exp, index) => (
                             <motion.div
                                 key={index}
-                                className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                                    }`}
-                                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                                variants={{
+                                    hidden: { opacity: 0, y: 20 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
+                                transition={{ duration: 0.4 }}
                             >
                                 {/* Timeline Dot */}
                                 <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 -top-2 w-4 h-4 rounded-full bg-obsidian-black border-2 border-electric-coral z-20 hidden sm:block">
@@ -122,7 +135,7 @@ export function Experience() {
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

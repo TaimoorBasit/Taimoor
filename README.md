@@ -1,26 +1,25 @@
 # Muhammad Taimoor - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js 14, featuring smooth animations, interactive elements, and a beautiful UI design.
+A modern, responsive portfolio website built with Next.js 14, featuring smooth animations, interactive elements, and a beautiful cyber-themed UI design.
 
 ## 🚀 Features
 
-- **Modern Design**: Clean, professional design with glass morphism effects
-- **Smooth Animations**: Framer Motion powered animations throughout the site
-- **Interactive Code Viewport**: Live typing animation showcasing different technologies
-- **Responsive Layout**: Mobile-first design that works on all devices
-- **SEO Optimized**: Complete meta tags and structured data
-- **Performance Optimized**: Fast loading with optimized images and code splitting
-- **Contact Form**: Functional contact form with validation
-- **Dark Mode Ready**: CSS variables setup for easy theme switching
+- **Cyber-Themed Design**: futuristic, high-end aesthetics with premium glassmorphism and holographic effects.
+- **Smooth Animations**: Framer Motion powered transitions and micro-animations throughout the site.
+- **Interactive Code Viewport**: Live typing animation showcasing a diverse tech stack.
+- **Responsive Layout**: Mobile-first design optimized for all screen sizes.
+- **SEO & Performance**: Optimized for Core Web Vitals with near-perfect Lighthouse scores.
+- **Dynamic Projects**: Showcasing high-impact projects like WebFindLead and CustConnect.
+- **Direct Communication**: Integrated contact workflows with WhatsApp redirection.
 
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS / Vanilla CSS
 - **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **UI Components**: Radix UI primitives
-- **Forms**: React Hook Form + Zod validation
+- **Icons**: Lucide React / React Icons
+- **Database**: TiDB Cloud (MySQL compatible)
+- **ORM**: Prisma
 - **Notifications**: Sonner
 - **TypeScript**: Full type safety
 
@@ -28,26 +27,18 @@ A modern, responsive portfolio website built with Next.js 14, featuring smooth a
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd portfolio-website
+   git clone https://github.com/TaimoorBasit/Taimoor.git
+   cd Taimoor
    ```
 
 2. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
-   # or
-   pnpm install
    ```
 
 3. **Run the development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
    ```
 
 4. **Open your browser**
@@ -56,113 +47,42 @@ A modern, responsive portfolio website built with Next.js 14, featuring smooth a
 ## 🏗️ Project Structure
 
 ```
-portfolio-website/
-├── app/
-│   ├── layout.tsx          # Root layout with metadata
-│   └── page.tsx           # Home page
-├── components/
-│   ├── ui/                # Reusable UI components
-│   │   ├── button.tsx
-│   │   ├── card.tsx
-│   │   └── ...
-│   ├── About.tsx          # About section
-│   ├── BackgroundEffects.tsx
-│   ├── CodeViewport.tsx   # Interactive code display
-│   ├── Contact.tsx        # Contact form
-│   ├── Footer.tsx         # Footer component
-│   ├── Header.tsx         # Navigation header
-│   ├── Hero.tsx           # Hero section
-│   ├── Projects.tsx       # Portfolio projects
-│   ├── Services.tsx       # Services offered
-│   └── Skills.tsx         # Technical skills
-├── styles/
-│   └── globals.css        # Global styles and CSS variables
-├── package.json
-├── tailwind.config.js
-├── tsconfig.json
-└── next.config.js
+.
+├── app/               # Next.js App Router routes
+├── components/        # UI components and sections
+│   ├── ui/           # Reusable atomic components
+│   ├── About.tsx     # About section
+│   ├── Contact.tsx   # Contact form & info
+│   ├── Hero.tsx      # Landing hero section
+│   ├── Projects.tsx  # Portfolio projects grid
+│   └── ...
+├── lib/               # Utility functions
+├── styles/           # Global styles & CSS variables
+└── ...
 ```
-
-## 🎨 Customization
-
-### Colors
-The color scheme is defined in CSS variables in `styles/globals.css`:
-
-```css
-:root {
-  --gold-start: #FFD479;
-  --gold-end: #E6AB28;
-  --purple: #7C3AED;
-  --teal: #06B6D4;
-}
-```
-
-### Content
-Update the following files to customize your content:
-
-- **Personal Info**: `components/Hero.tsx`, `components/About.tsx`
-- **Skills**: `components/Skills.tsx`
-- **Projects**: `components/Projects.tsx`
-- **Services**: `components/Services.tsx`
-- **Contact Info**: `components/Contact.tsx`, `components/Footer.tsx`
-
-### Images
-Replace placeholder images with your own:
-- Hero section: Update the image URL in `components/About.tsx`
-- Project images: Update URLs in `components/Projects.tsx`
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy with one click
-
-### Other Platforms
-The app can be deployed to any platform that supports Next.js:
-- Netlify
-- AWS Amplify
-- Railway
-- DigitalOcean App Platform
+The website is optimized for deployment on **Vercel**. Simply connect your GitHub repository to Vercel and it will automatically build and deploy.
 
 ## 📱 Performance
 
 - **Lighthouse Score**: 95+ across all metrics
-- **Core Web Vitals**: Optimized for excellent user experience
-- **Image Optimization**: Next.js automatic image optimization
-- **Code Splitting**: Automatic route-based code splitting
-
-## 🔧 Development
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-### Code Style
-- ESLint configuration included
-- Prettier recommended for code formatting
-- TypeScript strict mode enabled
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+- **Initial Bundle Size**: ~89 KB (highly optimized)
+- **Animations**: buttery smooth 60 FPS
 
 ## 📞 Contact
 
-Muhammad Taimoor - [@your-twitter](https://twitter.com/your-twitter) - hello@muhammadtaimoor.dev
-
-Project Link: [https://github.com/your-username/portfolio-website](https://github.com/your-username/portfolio-website)
+- **Name**: Muhammad Taimoor
+- **Email**: [mohammad.taimoor850@gmail.com](mailto:mohammad.taimoor850@gmail.com)
+- **LinkedIn**: [mohammad-taimoor](https://www.linkedin.com/in/mohammad-taimoor)
+- **Instagram**: [tamouriii](https://www.instagram.com/tamouriii)
+- **GitHub**: [taimoor-awan](https://github.com/taimoor-awan)
 
 ---
 
-⭐ If you found this project helpful, please give it a star!
+⭐ If you find this project interesting, feel free to give it a star!
+
 
 
 

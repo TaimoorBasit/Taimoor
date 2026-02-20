@@ -1,3 +1,4 @@
+// Fresh build trigger - 2026-02-20
 import dynamic from 'next/dynamic';
 
 import { Header } from '../components/Header';

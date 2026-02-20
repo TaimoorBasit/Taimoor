@@ -54,48 +54,11 @@ const RotatingWords = () => {
 };
 
 const DeferredSpline = () => {
-    const [shouldLoad, setShouldLoad] = useState(false);
-
-    useEffect(() => {
-        // Defer Spline loading to prioritize initial page load and LCP
-        const timer = setTimeout(() => {
-            setShouldLoad(true);
-        }, 1500);
-
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
-        <div className="w-full h-full relative min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
-            <AnimatePresence mode="wait">
-                {!shouldLoad ? (
-                    <motion.div
-                        key="placeholder"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 flex items-center justify-center"
-                    >
-                        {/* High-quality static fallback for LCP & Performance */}
-                        <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/5 bg-white/[0.02] backdrop-blur-md flex items-center justify-center group">
-                            <Zap className="text-electric-coral animate-pulse opacity-20" size={64} />
-                            <div className="absolute inset-x-0 bottom-8 text-center">
-                                <span className="text-[10px] text-slate-500 font-mono tracking-widest uppercase animate-pulse">Initializing 3D Environment...</span>
-                            </div>
-                        </div>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="spline"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        className="w-full h-full"
-                    >
-                        <SplineSceneBasic />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+        <div className="w-full h-full relative min-h-[350px] sm:min-h-[450px] lg:min-h-[600px] flex items-center justify-center">
+            <div className="w-full h-full">
+                <SplineSceneBasic />
+            </div>
         </div>
     );
 };
@@ -198,11 +161,8 @@ export function HeroWebFindLead() {
                         </div>
                     </div>
 
-                    <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] w-full flex items-center justify-center order-1 lg:order-2 z-10 pointer-events-auto">
-                        <motion.div
-                            initial={{ opacity: 0, x: 50, rotateY: 10 }}
-                            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                            transition={{ duration: 1.5, ease: "easeOut" }}
+                    <div className="relative h-[350px] sm:h-[450px] lg:h-[600px] w-full flex items-center justify-center order-1 lg:order-2 z-10 pointer-events-auto">
+                        <div
                             className="w-full h-full relative"
                         >
                             {/* Decorative Frame */}
@@ -210,7 +170,7 @@ export function HeroWebFindLead() {
                             <div className="absolute -inset-4 border border-electric-coral/10 rounded-3xl -z-10 -rotate-2 scale-105 opacity-50" />
 
                             <DeferredSpline />
-                        </motion.div>
+                        </div>
                     </div>
 
                 </div>

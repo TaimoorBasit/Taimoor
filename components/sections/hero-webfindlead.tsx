@@ -113,7 +113,7 @@ export function HeroWebFindLead() {
                             <motion.h1
                                 initial={{ opacity: 1, y: 0 }} // SSR visible by default
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter text-white leading-tight uppercase font-orbitron"
+                                className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] uppercase font-orbitron"
                             >
                                 BUILDING <br />
                                 HIGH-PERFORMANCE <br />
@@ -127,7 +127,7 @@ export function HeroWebFindLead() {
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
-                                className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light pt-6 border-l-2 border-electric-coral/50 pl-6 mt-6"
+                                className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light pt-6 border-l-2 border-electric-coral/50 pl-6 mt-6"
                             >
                                 Founder of <span className="text-white font-medium">WebFindLead</span> — a SaaS platform that automates local business lead generation for agencies and developers by identifying businesses without a digital presence.
                             </motion.p>

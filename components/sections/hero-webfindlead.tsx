@@ -55,35 +55,15 @@ const RotatingWords = () => {
 
 const DeferredSpline = () => {
     const [shouldLoad, setShouldLoad] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        // Detect mobile to save battery and performance
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        // Defer Spline loading
+        // Defer Spline loading to prioritize initial page load and LCP
         const timer = setTimeout(() => {
-            if (window.innerWidth >= 768) {
-                setShouldLoad(true);
-            }
+            setShouldLoad(true);
         }, 1500);
 
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener('resize', checkMobile);
-        };
+        return () => clearTimeout(timer);
     }, []);
-
-    if (isMobile) {
-        return (
-            <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/5 bg-white/[0.02] backdrop-blur-md flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-tr from-electric-coral/20 to-transparent opacity-30" />
-                <Zap className="text-electric-coral opacity-20" size={64} />
-            </div>
-        );
-    }
 
     return (
         <div className="w-full h-full relative min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] flex items-center justify-center">

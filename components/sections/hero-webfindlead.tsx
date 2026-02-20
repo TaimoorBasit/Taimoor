@@ -22,22 +22,29 @@ const words = ["Digital Ecosystems", "AI Agents", "SaaS Platforms", "High-Ticket
 
 const RotatingWords = () => {
     const [index, setIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % words.length);
         }, 4000);
         return () => clearInterval(interval);
     }, []);
 
+    // On mobile, just render static text or very simple motion to save TBT
+    if (isMobile) {
+        return <span className="text-electric-coral">{words[index]}</span>;
+    }
+
     return (
         <AnimatePresence mode="wait" initial={false}>
             <motion.span
                 key={words[index]}
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
                 className="text-electric-coral inline-block py-1"
             >
                 {words[index]}
@@ -161,9 +168,8 @@ export function HeroWebFindLead() {
                             </motion.div>
 
                             <motion.h1
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 1, y: 0 }} // SSR visible by default
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4, duration: 0.8 }}
                                 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter text-white leading-tight uppercase font-orbitron"
                             >
                                 BUILDING <br />
@@ -176,23 +182,18 @@ export function HeroWebFindLead() {
                             {/* Subheading - Transformation Focused */}
                             <motion.p
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.7, duration: 1 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
                                 className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light pt-6 border-l-2 border-electric-coral/50 pl-6 mt-6"
                             >
                                 Founder of <span className="text-white font-medium">WebFindLead</span> — a SaaS platform that automates local business lead generation for agencies and developers by identifying businesses without a digital presence.
                             </motion.p>
                         </div>
 
-                        {/* CTA Buttons - Premium Conversion Focused */}
+                        {/* CTA Buttons - Professional Conversion Focused */}
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5 pt-8">
-                            <motion.button
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.9 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="relative overflow-hidden group bg-electric-coral text-white px-8 py-4 rounded-lg font-bold text-lg w-full sm:w-auto shadow-[0_0_20px_-5px_rgba(255,62,92,0.5)] hover:shadow-[0_0_30px_-5px_rgba(255,62,92,0.7)] transition-all duration-300"
+                            <button
+                                className="relative overflow-hidden group bg-electric-coral text-white px-8 py-4 rounded-lg font-bold text-lg w-full sm:w-auto shadow-[0_0_20px_-5px_rgba(255,62,92,0.5)] hover:shadow-[0_0_30px_-5px_rgba(255,62,92,0.7)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -204,21 +205,16 @@ export function HeroWebFindLead() {
                                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </span>
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-                            </motion.button>
+                            </button>
 
-                            <motion.a
+                            <a
                                 href="tel:+19726887170"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1, duration: 0.8 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 rounded-lg font-semibold text-lg text-white border border-white/10 hover:border-electric-coral/50 hover:bg-white/[0.05] transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 backdrop-blur-sm group cursor-pointer"
+                                className="px-8 py-4 rounded-lg font-semibold text-lg text-white border border-white/10 hover:border-electric-coral/50 hover:bg-white/[0.05] transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 backdrop-blur-sm group cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
                                 aria-label="Call me at +1 (972) 688-7170"
                             >
                                 <Phone size={20} className="text-electric-coral group-hover:rotate-12 transition-transform" aria-hidden="true" />
                                 <span>+1 (972) 688-7170</span>
-                            </motion.a>
+                            </a>
                         </div>
                     </div>
 

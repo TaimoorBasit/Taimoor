@@ -95,11 +95,11 @@ export function FlagshipProducts() {
                             </div>
                             <div className="relative w-full h-[calc(100%-32px)]">
                                 <Image
-                                    src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwebfindlead.vercel.app%3Fv%3D1?w=1024"
+                                    src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwebfindlead.vercel.app%3Fv%3D1?w=800"
                                     alt="Professional dashboard preview of WebFindLead showing the local business scanning interface"
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     unoptimized
                                     priority
                                 />
@@ -156,11 +156,11 @@ export function FlagshipProducts() {
                             </div>
                             <div className="relative w-full h-[calc(100%-32px)]">
                                 <Image
-                                    src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fcustconnect.vercel.app%3Fv%3D1?w=1024"
+                                    src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fcustconnect.vercel.app%3Fv%3D1?w=800"
                                     alt="Official dashboard preview of CustConnect"
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     unoptimized
                                     loading="lazy"
                                 />

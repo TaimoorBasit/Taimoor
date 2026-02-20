@@ -37,36 +37,41 @@ export const TechMarquee = ({
     pauseOnHover?: boolean;
     className?: string;
 }) => {
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
+
+    const displayStack = isMobile ? techStack.slice(0, 10) : [...techStack, ...techStack];
+
     return (
         <div
-            ref={containerRef}
             className={cn(
                 "scroller relative z-20 w-full overflow-hidden",
                 className
             )}
             style={{
                 "--animation-direction": direction === "left" ? "forwards" : "reverse",
-                "--animation-duration": speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s",
+                "--animation-duration": isMobile ? "25s" : (speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s"),
             } as React.CSSProperties}
         >
             <ul
                 className={cn(
-                    "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap animate-scroll",
+                    "flex min-w-full shrink-0 gap-8 sm:gap-16 py-4 w-max flex-nowrap animate-scroll will-change-transform",
                     pauseOnHover && "hover:[animation-play-state:paused]"
                 )}
             >
-                {[...techStack, ...techStack].map((tech, idx) => (
+                {displayStack.map((tech, idx) => (
                     <li
-                        className="w-[100px] h-[80px] max-w-full relative flex flex-col items-center justify-center flex-shrink-0 transition-transform duration-300 hover:scale-110"
+                        className="w-[80px] sm:w-[100px] h-[60px] sm:h-[80px] max-w-full relative flex flex-col items-center justify-center flex-shrink-0 transition-transform duration-300 hover:scale-110"
                         key={`${tech.name}-${idx}`}
                     >
                         <tech.icon
-                            className="w-10 h-10 mb-3"
+                            className="w-8 h-8 sm:w-10 sm:h-10 mb-2 sm:mb-3"
                             style={{ color: tech.color || 'white' }}
                         />
                         <span
-                            className="text-xs font-bold uppercase tracking-wider"
+                            className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-center"
                             style={{ color: tech.color || 'white', opacity: 0.9 }}
                         >
                             {tech.name}

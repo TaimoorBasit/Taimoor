@@ -57,7 +57,8 @@
 
   /* Fonts */
   --font-orbitron: 'Orbitron', monospace;
-  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  /* Fonts */
+  --font-orbitron: 'Orbitron', monospace;
 }
 
 @layer base {
@@ -66,8 +67,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: var(--font-space-grotesk);
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   }
 
   ::selection {
@@ -97,10 +98,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cleaned up performance hints - avoided layer explosion */
-.cyber-glass,
-.cyber-button {
-  will-change: transform, opacity;
+/* Optimized performance hints - GPU hints for transformed elements only */
+.cyber-glass:hover,
+.cyber-button:hover {
+  will-change: transform;
 }
 
 body {

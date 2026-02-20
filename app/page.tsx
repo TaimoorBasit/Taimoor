@@ -10,31 +10,31 @@ const About = dynamic(() => import('../components/About').then(mod => ({ default
 });
 
 const Skills = dynamic(() => import('../components/Skills').then(mod => ({ default: mod.Skills })), {
-  ssr: true,
+  ssr: false, // Below fold, heavy carousel
 });
 
 const Projects = dynamic(() => import('../components/Projects').then(mod => ({ default: mod.Projects })), {
-  ssr: true,
+  ssr: false, // Below fold, heavy cards
 });
 
 const Testimonials = dynamic(() => import('../components/Testimonials').then(mod => ({ default: mod.Testimonials })), {
-  ssr: true,
+  ssr: false, // Below fold
 });
 
 const Services = dynamic(() => import('../components/Services').then(mod => ({ default: mod.Services })), {
-  ssr: true,
+  ssr: true, // Often near top, keep SSR
 });
 
 const TheProcess = dynamic(() => import('../components/sections/TheProcess').then(mod => ({ default: mod.TheProcess })), {
-  ssr: true,
+  ssr: false,
 });
 
 const FAQ = dynamic(() => import('../components/sections/FAQ').then(mod => ({ default: mod.FAQ })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Contact = dynamic(() => import('../components/Contact').then(mod => ({ default: mod.Contact })), {
-  ssr: true,
+  ssr: false,
 });
 
 const Footer = dynamic(() => import('../components/Footer').then(mod => ({ default: mod.Footer })), {
@@ -42,7 +42,7 @@ const Footer = dynamic(() => import('../components/Footer').then(mod => ({ defau
 });
 
 const FlagshipProducts = dynamic(() => import('../components/sections/FlagshipProducts').then(mod => ({ default: mod.FlagshipProducts })), {
-  ssr: true,
+  ssr: true, // Core content
 });
 
 export default function Home() {

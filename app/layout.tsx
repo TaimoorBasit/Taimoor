@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono, Orbitron, Space_Grotesk } from 'next/font/google'
+import { Inter, Orbitron } from 'next/font/google'
 import { Toaster } from 'sonner'
 import '../styles/globals.css'
 import { BackgroundEffects } from '@/components/BackgroundEffects'

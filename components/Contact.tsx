@@ -173,15 +173,12 @@ export function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate processing delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     // Construct WhatsApp Message
-    const message = `*New Project Inquiry*
+    const messageContent = `*New Project Inquiry*
     
 *Name:* ${formData.name}
 *Email:* ${formData.email}
@@ -191,10 +188,11 @@ export function Contact() {
 *Message:*
 ${formData.message}`;
 
-    const whatsappUrl = `https://wa.me/19726887170?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/19726887170?text=${encodeURIComponent(messageContent)}`;
 
-    // Open WhatsApp
-    window.open(whatsappUrl, '_blank');
+    // Use window.location.href instead of window.open to prevent iOS Safari popup blocking
+    // Navigation is more reliable than window.open for WhatsApp deep links on mobile
+    window.location.href = whatsappUrl;
 
     toast.success('Redirecting to WhatsApp...');
     setFormData({ name: '', email: '', phone: '', company: '', budget: '', customBudget: '', message: '' });

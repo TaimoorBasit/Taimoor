@@ -54,11 +54,30 @@ const RotatingWords = () => {
 };
 
 const DeferredSpline = () => {
+    const [shouldLoad, setShouldLoad] = useState(false);
+
+    useEffect(() => {
+        // Optimize performance by delaying Spline load (heavy 3D engine)
+        // 1s delay on desktop, 3s delay on mobile to reduce TBT significantly
+        const isMobileDevice = window.innerWidth < 768;
+        const delay = isMobileDevice ? 3000 : 1000;
+        const timer = setTimeout(() => {
+            setShouldLoad(true);
+        }, delay);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className="w-full h-full relative min-h-[350px] sm:min-h-[450px] lg:min-h-[600px] flex items-center justify-center">
-            <div className="w-full h-full">
-                <SplineSceneBasic />
-            </div>
+            {shouldLoad ? (
+                <div className="w-full h-full animate-in fade-in duration-1000">
+                    <SplineSceneBasic />
+                </div>
+            ) : (
+                <div className="flex flex-col items-center justify-center w-full h-full">
+                    <div className="w-8 h-8 border-4 border-electric-coral border-t-transparent rounded-full animate-spin" />
+                </div>
+            )}
         </div>
     );
 };

@@ -317,20 +317,7 @@ export function Projects() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <a
-              href="https://github.com/taimoor-awan"
-              target='_blank'
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-white/10 hover:border-electric-coral text-white transition-all font-medium group"
-            >
-              View Full Portfolio <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </motion.div>
+          {/* Removed View Full Portfolio button as per user request */}
         </div>
 
         {/* Projects Grid */}
